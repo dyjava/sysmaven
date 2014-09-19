@@ -92,7 +92,8 @@ public abstract class AbstractDBDao {
 		
 		String sql = "select * from "+table+" where id ="+id;
 		Object[] params = {} ;
-		T result = selectObject(sql, params, T) ;
+		@SuppressWarnings("unchecked")
+		T result = (T)selectObject(sql, params, T) ;
 
 		buf.append("|").append(sql)
 		.append("|")
