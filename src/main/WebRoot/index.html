@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录</title>
+<link href="manager/css/manager.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="manager/js/jquery-1.7.2.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css"/>
+<script type="text/javascript" src="jquery-easyui/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+<style type="text/css">
+.login{
+	height:30px;
+	width:240px;
+	padding-top:5px;
+	align:center;
+}
+.text{
+	height:18px;
+	width:180px;
+	padding-top:5px;
+	color:#808080
+}
+</style>
+</head>
+<body>
+
+<form id="login" method="get">
+<div align="center">
+	<div class="login"></div>
+	<div class="login" align="left"><img alt="login" src="manager/images/loginbox_dl.jpg"></div>
+	
+	<div class="login">
+		<label for="name">用户名:</label>
+		<input class="easyui-validatebox" type="text" name="username" id="username" data-options="required:true" />
+	</div>
+	<div class="login">
+		<label for="name">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+		<input class="easyui-validatebox" type="password" name="password" id="password" data-options="required:true" />
+	</div>
+	<div class="login" align="right"><input type="image" id="submit" src="manager/images/login_button.jpg"/></div>
+</div>
+</form>
+
+<script language="javascript" type="text/javascript" >
+$(function() {
+	$('#login').form('submit', {
+		url: "login.do",
+		onSubmit: function(){
+			
+		},
+		success: function(data){
+			//
+			
+		}
+	});
+});
+</script>
+</body>
+</html>
