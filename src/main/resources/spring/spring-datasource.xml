@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans default-autowire="no">
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="jdbc:mysql://localhost:3306/sys?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db_driver}" />
+		<property name="url" value="${db_url}" />
+		<property name="username" value="${db_username}" />
+		<property name="password" value="${db_password}" />
 		<!-- 初始化连接 -->
         <property name="initialSize">
             <value>20</value>
@@ -53,28 +50,6 @@
 	<!-- 配置Jdbc模板  -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 	   <property name="dataSource" ><ref bean="dataSource"/> </property>
-	</bean>
-	
-	<!--  -->
-	<bean id="accountDao" class="com.sys.spring.account.dao.AccountDaoImpl">
-	   <property name="jdbc" ref="jdbcTemplate"></property>
-	</bean>
-	
-	<bean id="incomeDao" class="com.sys.spring.account.dao.IncomeDaoImpl">
-	   <property name="jdbc" ref="jdbcTemplate"></property>
-	</bean>
-	
-	<bean id="diaryDao" class="com.sys.spring.account.dao.DiaryDaoImpl">
-	   <property name="jdbc" ref="jdbcTemplate"></property>
-	</bean>
-	
-	<bean id="kindDao" class="com.sys.spring.account.dao.KindDaoImpl">
-	   <property name="jdbc" ref="jdbcTemplate"></property>
-	</bean>
-	
-	<!-- 用户信息 -->
-	<bean id="userDao" class="com.sys.spring.user.dao.UserDaoImpl">
-	   <property name="jdbc" ><ref bean="jdbcTemplate"/> </property>
 	</bean>
 	
 </beans>
