@@ -11,38 +11,21 @@
 </head>
 <body>
 
-<ul id="tt1" class="easyui-tree" animate="true" dnd="true">
-    <li>
-        <span>中国</span>
-        <ul>
-            <li state="closed">
-                <span>广西</span>
-                <ul>
-                    <li>
-                        <span><a href="#">南宁</a></span>
-                    </li>
-                    <li>
-                        <span>梧州</span>
-                    </li>
-                    <li>
-                        <span>百色</span>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <span>北京市</span>
-            </li>
-            <li>
-                <span>上海市</span>
-            </li>
-            <li>香港</li>
-            <li>澳门</li>
-        </ul>
-    </li>
-    <li>
-        <span>美国</span>
-    </li>
-</ul>
+<ul class="easyui-tree" id="tt" data-options="url:'tree_data.do',lines:true,animate:true"></ul>
 
+
+<script type="text/javascript">
+
+$('#tt').tree({
+	onClick: function(node){
+		if(node.children.length==0){
+			alert(node.text);  // 在用户点击的时候提示
+		}
+		
+	}
+});
+
+
+</script>
 </body>
 </html>
