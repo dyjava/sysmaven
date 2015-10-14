@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户登录</title>
+<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css"/>
+<script type="text/javascript" src="jquery-easyui/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+
+
+<form id="login" method="get">
+<div style="text-align:center;padding-top:100px;">
+	<div style="width:300px;">
+		<div align="left"><img alt="login" src="manager/images/loginbox_dl.jpg"></div>
+		<div align="center">
+			<div>
+				<label for="name">用户名:</label>
+				<input class="easyui-validatebox" type="text" name="username"/>
+			</div>
+			<div>
+				<label for="name">密&nbsp;码:</label>
+				<input class="easyui-validatebox" type="password" name="password" />
+			</div>
+		</div>
+		<div align="right">
+			<input type="image" id="submit" src="manager/images/login_button.jpg"/>
+		</div>
+	</div>
+</div>
+</form>
+
+<script type="text/javascript" >
+$(function() {
+	$('#login').form('submit', {
+		url: "login.do",
+		onSubmit: function(){
+			
+		},
+		success: function(data){
+			//
+			
+		}
+	});
+});
+</script>
+</body>
+</html>
