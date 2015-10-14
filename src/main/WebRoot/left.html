@@ -13,13 +13,13 @@
 
 <ul class="easyui-tree" id="tt" data-options="url:'tree_data.do',lines:true,animate:true"></ul>
 
-
 <script type="text/javascript">
 
 $('#tt').tree({
 	onClick: function(node){
 		if(node.children.length==0){
-			alert(node.text);  // 在用户点击的时候提示
+			//alert(node.text);  // 在用户点击的时候提示
+			self.parent.right.add(node.text,node.url) ;
 		}
 		
 	}
