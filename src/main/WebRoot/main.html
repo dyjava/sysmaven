@@ -1,6 +1,59 @@
-<FRAMESET rows=* cols=* bordercolor='#006699' border=1 >
-      <FRAMESET rows=* cols=20%,*>
-          <FRAME name=left src="left.html" target="main">
-          <FRAME name=right src="./right.html">
-     </FRAMESET>
-</FRAMESET>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>layout</title>
+
+<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css"/>
+<script type="text/javascript" src="jquery-easyui/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',title:'管理后台',collapsed:false" style="height:80px" >
+    	<div>welcome</div>
+    </div>
+    <div data-options="region:'west',title:'目录树',split:true,collapsed:false" style="width:180px" >
+    	<ul class="easyui-tree" id="left-tree" data-options="url:'tree_data.do',lines:true,animate:true"></ul>
+    </div>
+    <div data-options="region:'center',title:'内容区',iconCls:'icon-reload'" >
+    	<div id="right" class="easyui-tabs" style="height:100%;"></div>
+    </div>
+</body>
+
+<script type="text/javascript">
+//tree
+$('#left-tree').tree({
+	onClick: function(node){
+		if(node.children.length==0){
+			//alert(node.text);  // 在用户点击的时候提示
+			add(node) ;
+		}
+		
+	}
+});
+
+//tabs
+$(function() {
+	$('#right').tabs('add',{
+	    title:'说明',
+	    content:'欢迎使用。',
+	    closable:true,
+	    href:"welcome.html",
+	});
+});
+function add(node){
+	var title = node.text ;
+	if ($('#right').tabs('exists', title)){    
+		$('#right').tabs('select', title);    
+    } else {
+    	$('#right').tabs('add',{
+    	    title: title,
+    	    closable: true,
+    	    href: node.url,
+    	});
+    }
+}
+
+</script>
+</html>
