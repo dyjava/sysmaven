@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" charset="UTF-8"/> 
+    
+    <link href="../css/common/common-base.css" rel="stylesheet" type="text/css" />
+    <link href="../css/common/common-layout.css" rel="stylesheet" type="text/css" />
+    
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/icon.css"/>
+	
+	<script type="text/javascript" src="../jquery-easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/ajaxfileupload.js"></script>
+</head>
+<body>
+<div id="caissa-main"> 
+  <!--面包屑start-->
+  <div class="caissa-nav caissa-marb5"> <strong>位置：</strong><span>商店</span><span>&gt;</span><span>信息发布</span> </div>
+  <!--面包屑end--> 
+  <div class="hr_10"></div>
+  <!--主体内容start-->
+  <div class="caissa-content">
+    <h1 class="caissa-title01"><p><span>基础信息</span></p></h1>
+    
+    <form id="leaders1">
+    <div class="caissa-content">
+    <table class="caissa-tb-t-in-t-in">
+    	<tr>
+    		<td class="caissa-td85">图片</td>
+    		<td>
+    			<img width="144" height="124" alt="" src="../images/pic.jpg" id="showImage" onclick="viewImage(this)">
+    			<span class="del"></span>
+    			<div style="position: relative; height: 30px;">
+	    			<a class="btn01">浏览...</a>
+	    			<input accept="image/*" onchange="change(this);" class="pic" type="file" name="fs" id="picId" size="20" style="opacity: 0; width:112px; position: absolute;top: 0;left: 0;height:30px;"/>
+    			</div>
+    		</td>
+   			<td class="caissa-wd135"></td>
+   		</tr>
+		<tr>
+			<td class="td_4">
+				<a href="javascript:saveAndNext(1);" class="btn01">保存并下一步</a>
+				<a href="javascript:saveAndNext(0);" class="btn01">保存并完成</a>
+			</td>
+		</tr>
+	</table>
+	</div>
+	</form>
+  </div>
+  <!--主体内容end--> 
+</div>
+	
+<script type="text/javascript">
+	//上传图片
+	function change(t) {
+		$.ajaxFileUpload({
+			url : "../image/upload.action", //用于文件上传的服务器端请求地址
+			secureuri : false, //是否需要安全协议，一般设置为false
+			fileElementId : "picId", //文件上传域的ID
+			dataType : "json", //返回值类型 一般设置为json
+			success : function(data, status){
+				if (data.status == 1) {
+					$("#showImage").attr("src","../leader/image/get_image.action?id=" + data.id);
+					$("#userImageId").val(data.id);
+				} else {
+					alert("图片上传失败");
+				}
+			},
+			error : function(data, status, e){
+				alert(e);
+			}
+		})
+	}
+	
+</script>
+</body>
+</html>
