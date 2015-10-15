@@ -1,0 +1,228 @@
+@charset "utf-8";
+/* CSS Document */
+.pro_leinfo ul li .changes dl dd p span,.pro_leinfo ul li .changes p.add,.through_info ul li .trans_city p span,.pro_leinfo ul li .deposit p.add,.pro_ri h3,.add_flight span.cancel,.flides_list p.add_title,.pro_leinfo ul li .deposit dl dd span.del,.select_table td.search input,.flow_list ul li .tem_list p.del,.gdate_info p.add,.service_con ul li strong.add,.shopping_place strong.add,.shopping ul li strong.add,.shopping_place table tr td.short,.day_trip p span,.day_spot span.spot,.day_spot strong.add,.day_trip strong.add{background:url(../../images/cy_ico.jpg) 0 0 no-repeat;}
+body, html {
+	min-width: 1024px;
+}
+.main{ width:1100px; margin:0 auto;}
+/*common start*/
+.caissa-inut01{box-sizing:border-box;border:1px solid #d0d0d0;border-radius:2px;line-height:28px;height:30px; display:inline-block;color:#999;}
+/*common end*/
+#test-window {
+	box-sizing: border-box;
+}
+.window .window-header {
+	padding: 5px 0;
+}
+.window .window-header .panel-with-icon {
+	line-height: 25px;
+}
+input[type='text'].input {
+	box-sizing: border-box;
+	border: 1px solid #CCC;
+	border-radius: 2px;
+	line-height: 30px;
+	height: 30px;
+	width: 270px;
+}
+.hide{ display:none;}
+
+.table_ty {
+	width: 100%;
+	line-height: 20px;
+	text-align: center;
+}
+.table_ty tr.active {
+	background: #fafafa
+}
+.table_ty td, .table_ty th {
+	border: 1px solid #e6e6e6;
+	padding: 7px 5px;
+}
+.table_ty td a {
+	padding: 0 5px;
+}
+.table_page {
+	margin-top: 10px;
+}
+.table_page select {
+	margin-right: 30px;
+	line-height: 30px;
+	height: 30px;
+	border: 1px solid #e6e6e6;
+	border-radius: 4px;
+}
+.table_page input {
+	width: 30px;
+	height: 30px;
+	border: 1px solid #e6e6e6;
+	border-radius: 4px;
+}
+.table_page .next_page, .table_page .prve_page {
+	display: inline-block;
+	padding: 0 8px;
+	line-height: 30px;
+	border: 1px solid #e6e6e6;
+}
+.table_page .next_page {
+	border-left: none;
+	border-radius: 0 4px 4px 0;
+}
+.table_page .prve_page {
+	border-right: none;
+	border-radius: 4px 0 0 4px;
+}
+.table_page .page {
+	border: 1px solid #e6e6e6;
+	height: 30px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.table_page .page li, .table_page .page span {
+	display: inline-block;
+	width: 30px;
+	text-align: center;
+	border-right: 1px solid #e6e6e6;
+	line-height: 30px;
+	cursor: pointer;
+}
+.table_page .page li.active {
+	background: #69a6f5;
+	color: #fff;
+}
+.table_page .page li.unclick {
+	background: #f8f4ff;
+}
+.table_page .page li:first-child, .table_page .page li:last-child {
+	border: none;
+	width: 80px;
+}
+.table_page .page li:first-child {
+	border-right: 1px solid #e6e6e6;
+}
+.table_page .sure {
+	display: inline-block;
+	width: 80px;
+	text-align: center;
+	border: 1px solid #e6e6e6;
+	line-height: 30px;
+	border-radius: 4px;
+	margin-left: 20px;
+	background: #fafafa;
+}
+.tanchu {
+	overflow: auto;
+	padding: 0 10px;
+	box-sizing: border-box;
+	background: #fff;
+}
+.tanchu h2 {
+	font-size: 16px;
+	color: #fff;
+	background: #258fd5;
+	padding: 8px;
+}
+.tanchu h2 span {
+	float: right;
+}
+.tanchu h3 {
+	font-size: 16px;
+	color: #5cbaf8;
+	border-bottom: 1px solid #5cbaf8;
+	margin-top: 20px;
+	padding-bottom: 5px;
+}
+.tanchu h3 label {
+	font-size: 14px;
+}
+.tanchu h3 label input[type='checkbox'] {
+	border-radius: 3px;
+	margin: 0 5px 0 15px;
+}
+.tanchu h4 {
+	font-size: 14px;
+	color: #5cbaf8;
+	border-bottom: 1px dashed #5cbaf8;
+	margin-top: 20px;
+	padding-bottom: 5px;
+	margin: 0 20px;
+}
+.tanchu .xingqi label {
+	padding-right: 10px;
+}
+.tanchu .xingqi label input {
+	margin-right: 3px;
+}
+.tanchu .modify_Gz, .tanchu .modify_Data {
+	display: none;
+}
+.add_data_rl {
+	width: 128px;
+	line-height: 30px;
+	height: 30px;
+}
+
+
+/*search start*/
+.caissa-search-tb01 .caissa-td-search{text-align:center; padding:25px 0px 25px 195px;}
+.caissa-search-tb01 .caissa-td-search .caissa-btn01,.caissa-search-tb01 .caissa-td-search .caissa-btn02{float:left;}
+.caissa-search-tb01 .caissa-td-search p.keywords{display:block; float:left;}
+.caissa-search-tb01 .caissa-td-search input{width:328px; padding:0px 5px 0px 25px; background-position:3px -368px;}
+.caissa-search-tb01 .caissa-td-search input:focus{ border-color:#999;}
+.caissa-search-tb01 .caissa-td-search span{padding-right:8px; font-size:14px; font-weight:bold; float:left;}
+.caissa-search-tb01 .caissa-td-search span:last-child{font-weight:normal; cursor:pointer; color:#ffe594; padding:2px;}
+.caissa-search-tb01 .caissa-td-search span:last-child:hover{color:#ffe594;}
+.caissa-search-div01{background:#fafafa; border:1px solid #f4f1f1; padding:10px 0px; margin:0px 20px 40px; position:relative; display:none;}
+.caissa-search-tb02{width:100%;}
+.caissa-search-tb02 td{padding:5px 2px;}
+.caissa-search-tb02 .caissa-td148 .easyui-combobox{width:148px;}
+.caissa-search-tb03{ margin-top:6px;}
+.caissa-search-tb03 tr td.td-width112{width:112px; text-align:right; line-height:30px; font-size:14px; color:#676767;}
+.caissa-search-tb03 tr td p{display:block;}
+.caissa-search-tb03 tr td p input{ float:left;}
+.caissa-search-tb03 tr td p span{display:block; line-height:30px; float:left; color:#676767;}
+.caissa-search-tb03 td.select input{color:#999;}
+.caissa-search-td-hide{width:90px; padding-right:10px; border:1px solid #f5f2f2; text-align:center; font-size:14px;color:#5d99fa; cursor:pointer; background:#fafafa;position:absolute; left:50%; margin-left:-50px; bottom:-25px; border-top:none; border-radius:0 0 3px 3px;}
+.caissa-search-td-hide span{font-family:serif;transform:rotate(-90deg);-moz-transform:rotate(-90deg); position:absolute;}
+/*search end*/
+
+
+/*new start*/
+.caissa-table-td-new{ background-position:0 -42px}
+/*new end*/
+.caissa-all-list{position:fixed; background:#fff; left:50%; margin-left:-200px; top:10%; width:400px; height:80%; border:1px solid #ccc; box-sizing:border-box; padding-bottom:35px;}
+.caissa-all-list h1{font-size:16px; background:#4c95f3; color:#fff; padding:5px 10px; position:fixed; width:380px;}
+.caissa-all-list h1 span{float:right; font-size:14px; cursor:pointer;}
+.caissa-all-list ul { padding:35px 10px 0 10px; overflow-y:auto; height:100%; box-sizing:border-box;}
+.caissa-all-list ul li,.custom_list ul li label{ display:inline-block; width:130px; padding:0px 20px; overflow:hidden;}
+.caissa-all-list ul li label input{ margin-right:3px;}
+
+/*开关按钮*/
+.button-YN{ width:90px; overflow:hidden; border-radius:3px; height:24px; background:#090; border:1px solid #060; position:relative;}
+.button-YN .div_YN{width:200%; height:24px; position:absolute;}
+.button-YN span{position:absolute; cursor:pointer; color:#fff; background:#090; top:2px; left:0; display:inline-block; width:50%;}
+.button-YN span:last-child{ left:50%;}
+.button-YN span i{padding:10px 12px; background:#fff; box-shadow:0 3px 3px #000; border-radius:4px;float:left; margin-left:2px;}
+.button-YN span.kaiqi i{float:right; margin-right:2px;}
+.button-YN label{ z-index:100; position:absolute; display:inline-block; height:24px; line-height:24px; width:100%; left:0;}
+
+
+/*通用样式*/
+.marginLR5{ margin:0 5px;}
+.width100{ width:97px;}
+
+/*demo弹出*/
+.demo_tanchu{ width:400px; height:270px; background:#fff; border:4px solid #cbdbeb; position:fixed; margin-left:-200px; margin-top:-135px; top:50%; left:50%; display:none;}
+.demo_tanchu h1{ font-size:16px; padding:0 20px; line-height:35px; background:#edf4fb; margin-bottom:20px;}
+.demo_tanchu h1 var{font-style:normal;}
+.demo_tanchu h1 span{ font-family:'Lucida Grande'; float:right;}
+.demo_tanchu table td{padding:5px;}
+.demo_tanchu table td.name{ text-align:right; width:140px;}
+.demo_tanchu table td.button_zu{ padding-top:20px; text-align:center;}
+.demo_tanchu table td input{ width:145px;}
+
+/*上传图片*/
+.file-box{ position:relative;} 
+.txt{ height:22px; border:1px solid #cdcdcd; width:200px;border-right:none;} 
+.btn{ background-color:#FFF; border:1px solid #CDCDCD;height:24px; border-radius:0 2px 2px 0;} 
+.file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0; left:0;}
