@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <node>
 	<id>1</id>
-	<text>世界</text>
-	<state>open</state>
-	<iconCls></iconCls>
+	<text>系统</text>
+	<state>closed</state>
+	<iconCls>./manager/js/dtree/img/base.gif</iconCls>
 	<url></url>
 	<children>
 		<node>
@@ -18,7 +18,7 @@
 					<text>北京</text>
 					<state></state>
 					<iconCls></iconCls>
-					<url>welcome.html</url>
+					<url>page/account_list.html</url>
 					<children></children>
 				</node>
 				<node>
