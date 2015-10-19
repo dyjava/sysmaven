@@ -2,7 +2,7 @@
 <node>
 	<id>1</id>
 	<text>系统</text>
-	<state>closed</state>
+	<state>open</state>
 	<iconCls>./manager/js/dtree/img/base.gif</iconCls>
 	<url></url>
 	<children>
@@ -22,15 +22,15 @@
 					<children></children>
 				</node>
 				<node>
-					<id>11</id>
+					<id>12</id>
 					<text>上海</text>
 					<state></state>
 					<iconCls></iconCls>
-					<url>welcome.html</url>
+					<url>page/account_list.html</url>
 					<children></children>
 				</node>
 				<node>
-					<id>11</id>
+					<id>13</id>
 					<text>苏州</text>
 					<state></state>
 					<iconCls></iconCls>
@@ -40,14 +40,14 @@
 			</children>
 		</node>
 		<node>
-			<id>1</id>
+			<id>2</id>
 			<text>美国</text>
-			<state></state>
+			<state>closed</state>
 			<iconCls></iconCls>
 			<url></url>
 			<children>
 				<node>
-					<id>11</id>
+					<id>21</id>
 					<text>华盛顿</text>
 					<state></state>
 					<iconCls></iconCls>
@@ -55,7 +55,7 @@
 					<children></children>
 				</node>
 				<node>
-					<id>11</id>
+					<id>22</id>
 					<text>纽约</text>
 					<state></state>
 					<iconCls></iconCls>
@@ -63,7 +63,7 @@
 					<children></children>
 				</node>
 				<node>
-					<id>11</id>
+					<id>23</id>
 					<text>旧金山</text>
 					<state></state>
 					<iconCls></iconCls>
