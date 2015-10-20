@@ -106,12 +106,29 @@
         	        ]]
        });
     	//添加
+    	/**
     	$("#add").on("click",function() {
     		var url = "page/account_update.html" ;
     		tabsAdd(url,"信息添加") ;
-    		//tabsJump("page/account_update.html") ;
     		//window.location.href="account_update.html" ;
     	})
+    	*/
+		$('#add').live('click',function(){
+    		var url = "page/account_update.html" ;
+			$("#dialog").dialog({  
+		        autoOpen:false,   
+		        modal:true,      
+		        draggable:true,  
+		        closeOnEscape:false,       
+		        title:"信息添加",  
+		        width:"85%",  
+		        height:"90%",  
+		        position:"center",  
+		        resizable:true, 
+		        href:url,
+		        });   
+		     $("#dialog").dialog("open");  
+		});
     	//查询
     	$("#listsearch").on("click",function() {
     		$('#tablelist').datagrid('load',$('#searchform').serializeObject());

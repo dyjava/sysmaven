@@ -26,13 +26,6 @@ public class AccountControler extends BaseController{
 		this.printOut(list, response);
 	}
 
-	@RequestMapping("account/add")
-	public void add(HttpServletRequest request, HttpServletResponse response, @ModelAttribute Account account) {
-		
-		int res = accountService.insertAccount(account) ;
-		this.printOut(res, response);
-	}
-
 	@RequestMapping("account/info")
 	public void info(HttpServletRequest request, HttpServletResponse response,@ModelAttribute Account account) {
 		
@@ -42,8 +35,12 @@ public class AccountControler extends BaseController{
 	
 	@RequestMapping("account/update")
 	public void update(HttpServletRequest request, HttpServletResponse response,@ModelAttribute Account account) {
-		
-		int res = accountService.updateAccount(account) ;
+		int res = 0;
+		if(account.getId()>0){
+			res = accountService.updateAccount(account) ;
+		} else {
+			res = accountService.insertAccount(account) ;
+		}
 		this.printOut(res, response);
 	}
 	
