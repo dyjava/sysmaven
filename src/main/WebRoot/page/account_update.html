@@ -57,14 +57,8 @@
   </div>
   <!--主体内容end--> 
 </div>
-<div id="dialog"></div>
 
 <script type="text/javascript">
-function GetQueryString(name){
-     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-     var r = window.location.search.substr(1).match(reg);
-     if(r!=null)return  unescape(r[2]); return null;
-}
 
 $(function(){
 	var dbId = GetQueryString("id") ;
@@ -84,7 +78,8 @@ $(function(){
 			url:"../account/update.do",
 			success:function(data){
 				var data = eval('(' + data + ')');
-				tabsClose();
+				$("#dialog").dialog("closed");  
+				//tabsClose();
 				//tabsJump("page/account_list.html") ;
 				//window.location.href="account_list.html" ;
 			}
@@ -92,7 +87,8 @@ $(function(){
 	})
 	
 	$("#add_cancel").on("click",function() {
-		tabsClose();
+		$("#dialog").dialog("closed");  
+		//tabsClose();
 	})
 	
 	$("#kindid").combobox({onSelect:function(){

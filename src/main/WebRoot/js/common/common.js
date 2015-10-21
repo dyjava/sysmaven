@@ -28,3 +28,27 @@ function GetQueryString(name){
     var r = window.location.search.substr(1).match(reg);
     if(r!=null)return  unescape(r[2]); return null;
 }
+
+/**
+ * 弹框
+ * @param url
+ * @param title
+ */
+function dialogOpen(url,title){
+	dialogOpen(url,title,"85%","90%") ;
+}
+function dialogOpen(url,title,width,weight){
+	$("#dialog").dialog({
+        autoOpen:false,   
+        modal:true,      
+        draggable:true,  
+        closeOnEscape:false,       
+        title:title,  
+        width:width,  
+        height:weight,  
+        position:"center",  
+        resizable:true, 
+        href:url,
+        });   
+     $("#dialog").dialog("open");
+}
