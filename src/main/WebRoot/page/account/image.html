@@ -1,0 +1,148 @@
+<!--#include virtual="../common/header.html"-->
+<script type="text/javascript" src="./../source/js/ajaxfileupload.js"></script>
+<body>
+	<div id="caissa-main">
+		<div class="caissa-nav caissa-marb5"><span>位置：</span><span><a href="">信息发布</a></span></div>
+			<div class="hr_10"></div>
+			<div class="caissa-content ">
+				<h1 class="caissa-title02"><p><span>图片管理</span></p></h1>
+                <div class="caissa-padb10">  	
+			     	<div class="caissa-toolbar"><a class="caissa-btn03" href="javascript:void(0)" id="add">上传图片</a></div>       
+				</div>
+				<div class="caissa-img-list" id="image"></div>
+            </div>
+            <div class="caissa-content"> 
+	            <table>
+						<tr>
+							<td colspan="1" class="caissa-alignce">
+			                <input type="button" value="上一步" class="caissa-btn01" id="back" onclick="history.go(-2);" />
+			                 <input type="button"  value="保存并下一步" class="caissa-btn01" id="next" />
+							</td>
+						</tr>
+				</table>     
+	        </div>       
+        </div>
+	<div class="demo_tanchu">
+		<h1><var>上传图片</var></h1>
+	    <table width="100%" border="0">
+	     <tr>
+	        <td class="name">图片上传</td>
+	       <td><div class="file-box"><input type="file" id="fs" name="fs" /></div></td>
+	     </tr>
+	     <tr>
+	      	<td colspan="2" class="button_zu">
+	      	<input type="button" id="send" value="上传" class="caissa-btn01"  />
+		    <a href="#" class="caissa-btn02" id="pro_cannel">取消</a></td>
+	      </tr>
+	    </table>
+	</div>
+	
+<script type="text/javascript" >
+	function GetQueryString(name){
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if(r!=null)return  unescape(r[2]); return null;
+	}
+	var relatType = GetQueryString("relatType") ;
+	var relatId = GetQueryString("relatId") ;
+
+	function load(){
+		$.ajax({
+			url: "filelist.do",
+			type: "get",
+			data:{"categoryCode":2,"relatType":relatType,"relatId":relatId},
+			success:function(result){
+				console.log(result.length);
+				alert(result.length);
+				var size = 4;
+				$("#image").html("");
+				if(result.length>0){
+					var html="";
+					for(var i=0;i<result.length;i++){
+						html +='<div class="img">'+
+										'<img src="'+result[i].attachPath+'"/>'+
+										'<div class="caissa-del-grey" onclick="del(\''+result[i].dbId+'\')"></div>'+
+										'<div class="info">'+result[i].attachName+'</div>'+
+									'</div>';
+						
+					}
+					$("#image").html(html);
+				}
+			}
+		});
+	}
+	$(function(){
+		load();
+
+			 $("#send").click(function () {
+				 if ($("#fs").val().length > 0) {
+	                    ajaxFileUpload();
+	                }else{
+	                	alert("失败");
+	                }
+	         });
+			 
+			//弹出
+			$("#modify,#add").on("click",function(){
+				$(".demo_tanchu").show();
+				if($(this).attr("id")=="modify"){
+					$(".demo_tanchu h1 var").html("修改产品");
+					var productName = $("").val();
+					var productIntegral = $("").val();
+					$("#pro_name").combobox('setValue',productName);
+					$("#pro_integral").val(productIntegral);
+					}
+			})
+			$("#pro_ok,#pro_cannel").on("click",function(){
+				if($(this).attr("id")=="pro_ok"){
+					$(".demo_tanchu").hide();
+				}else{
+					$(".demo_tanchu").hide();
+				}
+			})
+					$("#next").on("click",function() {
+			window.location.href="../common/contact.html?relatType="+relatType+"&relatId="+relatId ;
+		})
+		});
+		
+		//删除附件
+		function del(id){
+			$.get("filedelete.do",{dbId:id});
+			history.go(-1);
+			load();
+		
+				//	window.location.href=window.location.href;
+				
+		}
+		
+		//ajax异步
+		function ajaxFileUpload() {
+            $.ajaxFileUpload({
+                url: './fileupload.do', //用于文件上传的服务器端请求地址
+                fileElementId: 'fs', //文件上传域的ID
+                dataType: 'json', //返回值类型 一般设置为json
+                data:{
+                	"categoryCode":2,
+                	"relatType":relatType,
+                	"relatId":relatId,
+                	"fileType":'image',
+                },
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                	//alert(123456);
+					$(".demo_tanchu").hide();
+					load();
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    alert(e);
+                }
+            })
+            return false;
+        }
+		
+
+		
+</script>
+</body>
+</html>

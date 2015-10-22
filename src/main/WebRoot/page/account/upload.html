@@ -1,0 +1,202 @@
+<!--#include virtual="../common/header.html"-->
+	<script type="text/javascript" src="./../source/js/ajaxfileupload.js"></script>
+
+<body>
+	<div id="caissa-main">
+	<!--面包屑start-->
+        <div class="caissa-nav caissa-marb5"><span>位置：</span><span><a href="">信息发布</a></span></div>
+        <!--面包屑end--> 
+        <div class="hr_10"></div>
+        <div class="caissa-content ">
+            <h1 class="caissa-title02"><p><span>附件管理</span></p></h1>
+             
+            <div class="caissa-toolbar"><a class="caissa-btn03" href="javascript:void(0)" id="add">上传文件</a></div> 
+			
+			<table id="dg" class="caissa-tb-line02"></table>
+			
+			<div class="caissa-content">
+				<table>
+					<tr>
+						<td colspan="1" class="caissa-alignce">
+		                <input type="button" value="上一步" class="caissa-btn01" id="back" onclick="history.go(-2);" />
+		                <input type="button" value="保存" class="caissa-btn01" id="ok" />
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+        </div>
+	</div>
+
+	<div class="demo_tanchu">
+		<h1><var>上传文件</var></h1>
+	    <table width="100%" border="0">
+	     <tr>
+	        <td class="name">文件上传</td>
+	       	<td><div class="file-box"><input type="file" id="fs" name="fs" onchange="fileChange(this);"/></div></td>
+	     </tr>
+	     <tr>
+	      	<td colspan="2" class="button_zu">
+	      	<input type="button" value="上传" class="caissa-btn01" id="uploadfile" />
+		    <a href="#" class="caissa-btn02" id="pro_cannel">取消</a></td>
+	      </tr>
+	    </table>
+	</div>
+</body>
+</html>
+<script type="text/javascript" >
+var isIE = /msie/i.test(navigator.userAgent) && !window.opera;         
+						  function fileChange(target) {     
+						      
+						    var fileSize = 0;          
+						    if (isIE && !target.files) {      
+						      var filePath = target.value;      
+						      var fileSystem = new ActiveXObject("Scripting.FileSystemObject");         
+						      var file = fileSystem.GetFile (filePath);      
+						      fileSize = file.Size;     
+						    } else {     
+						     fileSize = target.files[0].size;      
+						     }    
+						     var size = fileSize / 1024;     
+						     if(size>10000){   
+						      alert("附件不能大于10M");   
+						      $("#fs").val("");
+						     }   
+						       
+						}    
+				 		
+    function GetQueryString(name){
+         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if(r!=null)return  unescape(r[2]); return null;
+    }
+    var relatType = GetQueryString("relatType") ;
+    var relatId = GetQueryString("relatId") ;
+    
+		$(function(){
+			$('#dg').datagrid({
+				singleSelect:true,
+				collapsible:true,
+				queryParams: {
+					"categoryCode": 1,
+					"relatType":relatType,
+					"relatId":relatId,
+				},
+				url:"filelist.do", 
+				method:"get", 
+				autoRowHeight:35,
+				fitColumns: true,
+				singleSelect: false,
+				pagination: false,
+				collapsible : true,
+				pageSize:10,
+				rownumbers:true,
+			    columns:[[
+	                {field:'attachPath',title:'文件地址',width:100,hidden:true},
+			        {field:'attachName',title:'文件名',width:100,formatter : function(val,row,index) {
+						return '<a href='+row.attachPath+' >'+row.attachName+'</a>';
+				 	}},    
+			        {field:'dbId',title:'操作',width:100,formatter : function(val, rec) {
+						return '<a href="javascript:del(\''+val+'\');" >删除</a>';
+				 	}}    
+			    ]]
+			}); 
+			
+			 $("#uploadfile").click(function () {
+				 if ($("#fs").val().length >0) {
+				 		
+				 		  
+	                    ajaxFileUpload();
+	                }else{
+	                	alert("上传失败");
+	                }
+	         });
+			
+			//弹出
+			$("#modify,#add").on("click",function(){
+				//var html="";
+				$(".demo_tanchu").show();
+				if($(this).attr("id")=="modify"){
+					$(".demo_tanchu h1 var").html("修改产品");
+					var productName = $("").val();
+					var productIntegral = $("").val();
+					$("#pro_name").combobox('setValue',productName);
+					$("#pro_integral").val(productIntegral);
+				}
+				
+				$("#pro_ok,#pro_cannel").on("click",function(){
+					if($(this).attr("id")=="pro_ok"){
+						$(".demo_tanchu").hide();
+						
+					}else{
+						$(".demo_tanchu").hide();
+					}
+				})
+			
+			});
+			
+			$("#ok").on("click",function() {
+				var type="shop" ;
+				//关联资源类型Code[供应商=1 地接社=2 餐厅=3 景点=4 商店=5 酒店=6，默认0]
+				if(relatType==1){
+					type="" ;
+				}
+				var i = parseInt(relatType);
+				//alert(relatType); 
+				switch(i){
+					case 1:  
+							type="supplier";
+							 break;
+					case 2: type="dometour";
+					 		 break;
+					case 3: type="restaurant";
+					 		 break;
+					case 4: type="scenicspot";
+							 break;
+					case 5: type="shop";
+					 		 break;
+				}
+				window.location.href="../"+type+"/list.html" ;
+			})
+			
+		});
+		
+		//删除附件
+		function del(id){
+			$.get("./filedelete.do",{dbId:id},
+				function(data){
+					//window.location.reload();
+					$('#dg').datagrid("reload") ;
+			});
+		}
+
+	
+		//ajax异步
+		function ajaxFileUpload() {
+			
+			
+            $.ajaxFileUpload({
+                url: './fileupload.do', //用于文件上传的服务器端请求地址
+                fileElementId:'fs', //文件上传域的ID
+                dataType:'json', //返回值类型 一般设置为json
+                data:{
+                	"categoryCode":1,
+                	"relatType":relatType,
+                	"relatId":relatId,
+                	"fileType":'file',
+                },
+                success: function (data, status){//服务器成功响应处理函数
+                	//alert("1200000");
+                	if(status==-1){alert("文件过大!")}else{
+					$(".demo_tanchu").hide();
+					$('#dg').datagrid("reload") ;}
+                },
+                error: function (data, status, e) {//服务器响应失败处理函数
+                    alert(e);
+                }
+            })
+            return false;
+        }
+		
+		
+</script>

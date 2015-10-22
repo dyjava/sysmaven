@@ -1,35 +1,24 @@
 <!--#include virtual="../common/header.html"-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" charset="UTF-8"> 
-    
-    <link href="../../css/common/common-base.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/common/common-layout.css" rel="stylesheet" type="text/css" />
-    
-	<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css"/>
-	<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css"/>
-</head>
-<body>
+
+
 	<div class="caissa-main">
     	<!--面包屑start-->
         <div class="caissa-nav caissa-marb5"><span>位置：</span><span><a href="">商店</a></span><span> &gt; </span><span><a href="">信息发布</a></span></div>
         <!--面包屑end--> 
         <div class="hr_10"></div>
         <div class="caissa-content">
-            <h1 class="caissa-title01"><p><span>录入信息</span></p></h1>
+            <h1 class="caissa-title02"><p><span>录入信息</span></p></h1>
             
-            <form id="searchform">
+            <form id="searchform" name="searchform" action="./export.do" method="post">
             <table class="caissa-tb-t-in-t-in">
 				 <tr>
                     <td class="caissa-wd135">商店名称（英）</td>
                     <td>
-                        <input type="text" class="easyui-textbox caissa-wd168" id="enName" style="height:30px;" name="enName" data-options="required:false,validType:['length[0,100]','english']"/>
+                        <input type="text" class="caissa-input" id="enName" style="height:30px;" name="enName" data-options="required:false,validType:['length[0,100]','english']"/>
                     </td>
                     <td class="caissa-wd135">商店名称（中）</td>
                     <td>
-                        <input type="text" class="easyui-textbox caissa-wd168" style="height:30px;" name="cnName" value="" data-options="required:false,validType:['length[0,100]']"/>
+                        <input type="text" class="caissa-input" style="height:30px;" name="cnName" value="" data-options="required:false,validType:['length[0,100]']"/>
                     </td>
                     <td class="caissa-wd135"><span>商店类别</span></td>
                     <td>
@@ -45,7 +34,7 @@
 				<tr>
                     <td class="caissa-td85">供应商名称</td>
                     <td>
-                        <input type="text" class="caissa-wd168" id="supNames" style="height:30px;" name="" value="" />
+                        <input type="text" class="caissa-input" id="supNames" style="height:30px;" name="" value="" />
                         <input type="hidden" class="caissa-wd168" id="supIds" style="height:30px;" name="supIds" value="" />
                     </td>
                     <td class="caissa-td85"><span>资源状态</span></td>
@@ -106,11 +95,11 @@
 			</form>
         </div>
 		<div class="caissa-content">
-            <h1 class="caissa-title01"><p><span>查询结果</span></p></h1>
+            <h1 class="caissa-title02"><p><span>查询结果</span></p></h1>
             <div class="caissa-toolbar">
             	<a class="caissa-btn03" href="javascript:void(0)" id="add">新增</a>
-                <a class="caissa-btn03" href="javascript:void(0)" id="add">导入</a>
-                <a class="caissa-btn03" href="javascript:void(0)" id="add">导出</a>
+                <a class="caissa-btn03" href="javascript:void(0)" id="addin">导入</a>
+                <a class="caissa-btn03" href="javascript:exportexcel()" id="addexport">导出</a>
 				<a class="caissa-btn03" href="javascript:activated(1)" id="activated">启用</a>
 				<a class="caissa-btn03" href="javascript:activated(0)" id="forbidden">禁用</a>
 				<a class="caissa-btn03" href="javascript:activated(2)" id="delete">删除</a>
@@ -267,4 +256,10 @@
     		}
     	});
     }
+	function exportexcel(){
+		$("#searchform").submit();
+//		$.get("./export.do", $('#searchform').serializeObject(), function (result) {
+//			alert("商店导出");
+//		})
+	}
 </script>

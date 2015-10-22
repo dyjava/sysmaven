@@ -1,0 +1,215 @@
+<!--#include virtual="../common/header.html"-->
+
+<body>
+	<div class="caissa-main">
+	<!--面包屑start-->
+        <div class="caissa-nav caissa-marb5"><span>位置：</span><span><a href="">信息发布</a></span></div>
+        <!--面包屑end--> 
+        <div class="hr_10"></div>
+        <div class="caissa-content ">
+            <h1 class="caissa-title02"><p><span>办事处管理</span></p></h1>
+             
+             
+            <div class="caissa-content">
+				<table>
+					<tr>
+						<td colspan="4" class="td_4"><a href="javascript:(0)" id="add" class="caissa-alignce caissa-btn01">新增办事处</a></td>
+					</tr>
+				</table>
+				
+				<table id="officelist" class="caissa-tb-line02" ></table>
+			</div>
+			
+			<div class="caissa-content">
+				<table>
+					<tr>
+						<td colspan="1" class="caissa-alignce">
+		                <input type="button" value="上一步" class="caissa-btn01" id="back" onclick="history.go(-2);" />
+		                <input type="button" value="下一步" class="caissa-btn01" id="next" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div id="add_tanchu" class="easyui-dialog" title="增加办事处信息" style="width:400px;height:80%;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,shadow:false">   
+			 <form id="add_office" >
+			<table class="caissa-tb-t-in-t-in" border="0" >
+				<tr>
+					<td  class="caissa-wd135"><span>办事处名称</span></td>
+					<td>
+						<input id="relatType" name="relatType" type="hidden"/>
+						<input id="relatId" name="relatId" type="hidden"/>
+						<input id="dbId" name="dbId" type="hidden"/>
+						<input id="name" name="name" class="easyui-textbox caissa-wd168" data-options="required:true,validType:['length[0,100]','unnormal']" type="text"/>
+					</td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>中国代表处所在城市</span></td>
+					<td>
+					<!-- <div class="caissa-srh-tip"> -->
+	                    <input type="text"  name="city" id="city" value=""  class="caissa-input caissa-wd168"/>
+	                    <div id="citytips" class="caissa-tip-list" style="display:block">
+							<p></p>
+						</div>
+					<!-- </div> -->
+					<input id="citycode" name="cityCode" type="hidden"/>
+					</td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>负责人</span></td>
+					<td><input id="chief" name="chief" type="text" class="easyui-textbox caissa-wd168" data-options="required:true,validType:['length[0,20]','unnormal']"/></td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>中国代表处详细地址</span></td>
+					<td><input id="tel" name="addr" type="text" class="easyui-textbox caissa-wd168" data-options="required:false,validType:['length[0,100]','unnormal']"/></td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>成立时间</span></td>
+					<td><input id="estabDate" name="estabDate" class="easyui-datebox" type="text" data-options="required:false,validType:['length[0,20]']"/></td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>从业人数</span></td>
+					<td><input id="empNum" name="empNum" type="text" class="easyui-validatebox caissa-wd168" data-options="required:false,validType:['length[0,20]','age']"/></td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>部门设置</span></td>
+					<td><input id="deptSetting" name="deptSetting"  type="text"class="easyui-textbox caissa-wd168" data-options="required:false,validType:['length[0,60]']"/></td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>代表处电话</span></td>
+					<td><input id="tel" name="tel" type="text" class="easyui-textbox caissa-wd168" data-options="required:true,validType:['length[0,20]','phone']"/></td>
+				</tr>
+				<tr>
+					<td  class="caissa-wd135"><span>代表处传真</span></td>
+					<td><input id="fax" name="fax"  type="text" class="easyui-textbox caissa-wd168" data-options="required:false,validType:['length[0,20]','faxno']"/></td>
+				</tr>
+			</table>
+			<div class="caissa-alignce" >
+			     <input type="button" value="确认" class="caissa-btn01" id="add_ok" />
+		         <input type="button" value="取消" class="caissa-btn02" id="add_cancel" />
+			</div>
+		</form>
+		</div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	
+	function GetQueryString(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	var relatType = GetQueryString("relatType") ;
+	var relatId = GetQueryString("relatId") ;
+	
+	$(function(){
+	/* $("#add_tanchu").dialog("close");  */
+	//加载办事处信息
+	$("#officelist").datagrid({
+    	url: "../office/list.do",
+    	method: "post",
+    	singleSelect : true,
+		collapsible : true,
+		autoRowHeight : 35,
+		fitColumns : true,
+		pagination : false,
+		rownumbers : true,
+		queryParams: {"relatType": relatType,"relatId": relatId},
+    	columns:[[
+				 
+    	          {field:'name', title:'代表处名称', width:50},
+    	          {field:'city',title:'中国代表处所在城市', width:40},
+    	          {field:'chief',title:'负责人', width:50},
+    	          {field:'addr',title:'中国代表处详细地址', width:50},
+    	          {field:'estabDate',title:'成立时间', width:50},
+    	          {field:'empNum',title:'从业人数', width:40},
+    	          {field:'deptSetting',title:'部门设置', width:40},
+    	          {field:'tel',title:'代表处电话', width:40},
+    	          {field:'fax',title:'代表处传真', width:40},
+    	          {field:'dbId',
+    	        	  title:'操作', 
+    	        	  width:40, 
+    	        	  align:'center', 
+    	        	  formatter:function(value, row, index){
+    	        		  return'<a href=\"javascript:update(\''+row.dbId+'\')\">更新</a>&nbsp;&nbsp;<a href=\"javascript:del()\">删除</a>'
+    	        	  }
+    	          }
+    	        ]]
+	});
+	/* $('#add').on("click", function(){
+		$("#relatType").val(relatType) ;
+		$("#relatId").val(relatId) ;
+		$('#add_tanchu').show()
+	}) */
+	
+	
+	
+    
+    $("#add_ok").on("click", function() {
+		if($("#add_office").find("#name").val()==""){
+			$.messager.alert("提示","名称不能为空")
+		}else if($("#add_office").find("#title").val()==""){
+			$.messager.alert("提示","职务不能为空")
+		}else{
+			$.ajax({
+				url : "../office/update.do",
+				type : "get",
+				data : $("#add_office").serializeObject(),
+				success : function(data) {
+					if (data == 1) {
+						$.messager.alert('提示', '添加成功');
+						$("#add_tanchu").dialog("close");
+						$("#add_office").form('clear');
+						$('#officelist').datagrid('reload');
+					} else {
+						$.messager.alert('提示', '添加失败');
+					}
+				}
+			})
+		}
+	});
+    $("#add_cancel").on("click", function() {
+    	$("#add_tanchu").dialog("close");
+    });
+
+	//下一步
+    $("#next").on("click", function() {
+    	window.location.href="contact.html?relatType="+relatType +"&relatId="+relatId ;
+	});
+	
+    $("#add").live('click',function(){
+		$("#relatType").val(relatType) ;
+		$("#relatId").val(relatId) ;
+    	$("#add_tanchu").dialog("open");
+    })
+	
+});
+//删除一个联系人
+function del(){
+    var row = $('#officelist').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirm','确定删除?',function(r){
+            if (r){
+                $.post('../office/del.do',{dbId:row.dbId},function(result){
+                    if (result == 1){
+                        $('#officelist').datagrid('reload');    // reload the user data
+                    } else {
+                        $.messager.alert("操作提示","删除失败，请稍后再试.");
+                    }
+                },'json');
+            }
+        });
+    }
+}
+//更新联系人信息
+function update(id){
+	var row = $('#officelist').datagrid('getSelected');
+	if (row){
+		$('#add_office').form('load', row);
+		$("#add_tanchu").dialog("open");
+	}
+}
+</script>
