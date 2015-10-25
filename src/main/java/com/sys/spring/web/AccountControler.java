@@ -1,5 +1,7 @@
 package com.sys.spring.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,6 +23,14 @@ public class AccountControler extends BaseController{
 	@RequestMapping("account/list")
 	public void list(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute Account account, String begin, String end) {
+		if(begin==null){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-01") ;
+			begin = dateFormat.format(new Date()) ;
+		}
+		if(end==null){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd") ;
+			end = dateFormat.format(new Date()) ;
+		}
 		
 		List<Account> list = accountService.findAccountList(begin, end, account) ;
 		this.printOut(list, response);

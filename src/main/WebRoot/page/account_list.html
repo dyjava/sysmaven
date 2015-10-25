@@ -36,7 +36,7 @@
                     </td>
                     <td class="caissa-td85"><span>类别</span></td>
                     <td>
-                    	<input id="kindid" class="easyui-combobox" name="kindid" data-options="valueField:'id',textField:'title',url:'../kind/list.do?parentid=-1'" />
+                    	<input id="kindid" class="easyui-combobox" name="kindid" data-options="valueField:'id',textField:'title',url:'./kind/list.do?parentid=-1'" />
                     </td>
                 </tr>
 				<tr>
@@ -75,7 +75,7 @@
 <script type="text/javascript">
     $(function(){
     	$("#tablelist").datagrid({
-        	url: "../account/list.do",
+        	url: "./account/list.do",
         	method: "get",
         	//queryParams: $("#searchform").serializeObject() ,
         	singleSelect : false,
@@ -88,17 +88,17 @@
         	columns:[[
         	          //{field:'ck',checkbox:true},
         	          {field:'uid',title:'UUID', width:120},
-        	          {field:'title', title:'名称', width:120, align:'center',
+        	          {field:'title', title:'名称', align:'center',
         	        	  formatter:function(value, row, index){
         	        		  return "<a href=\"javascript:info('"+ row.id +"')\">"+ value +"</a>" ;
         	        	  }
         	          },
-        	          {field:'money',title:'金额', width:150},
-        	          {field:'kindtitle',title:'类别', width:60},
-          	          {field:'datetime', title:'日期', width:120},
-        	          {field:'userId', title:'用户ID', width:120},
-        	          {field:'username', title:'用户名', width:60},
-        	          {field:'dbId', title:'操作', width:80, align:'left', 
+        	          {field:'money',title:'金额'},
+        	          {field:'kindtitle',title:'类别'},
+          	          {field:'datetime', title:'日期'},
+        	          {field:'userId', title:'用户ID'},
+        	          {field:'username', title:'用户名'},
+        	          {field:'dbId', title:'操作', align:'left', 
         	        	  formatter:function(value, row, index){
         	        		  return "<a href=\"javascript:update()\">更新</a>" ;
         	        	  }
@@ -107,7 +107,8 @@
        });
     	//添加
 		$('#add').live('click',function(){
-    		var url = "page/account_update.html" ;
+    		var url = "./page/account_update.html" ;
+    		alert(url) ;
     		dialogOpen(url,"信息添加") ;
     		//tabsAdd(url,"信息添加") ;
     		//window.location.href="account_update.html" ;
