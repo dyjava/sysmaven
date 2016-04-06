@@ -2,6 +2,7 @@ package com.sys.service.user.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sys.dao.user.UserDao;
@@ -10,14 +11,9 @@ import com.sys.service.user.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	private UserDao dao ;
 	
-	public UserDao getDao() {
-		return dao;
-	}
-	public void setDao(UserDao dao) {
-		this.dao = dao;
-	}
+	@Autowired
+	private UserDao userDao ;
 	
 	/**
 	 * 查询所有用户信息
@@ -25,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
-		return dao.selectUsersByUser(new User()) ;
+		return userDao.selectUsersByUser(new User()) ;
 	}
 
 	/**
@@ -34,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(int id) {
 		// TODO Auto-generated method stub
-		return dao.selectUserByID(id) ;
+		return userDao.selectUserByID(id) ;
 	}
 
 	/**
@@ -43,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean userDelete(int id) {
 		// TODO Auto-generated method stub
-		return dao.deleteUserByID(id)==0 ;
+		return userDao.deleteUserByID(id)==0 ;
 	}
 
 	/**
@@ -55,7 +51,7 @@ public class UserServiceImpl implements UserService {
 		if(user.getUsername()==null || user.getUsername().trim().length()==0){
 			user.setUsername(user.getEmail().substring(0,user.getEmail().indexOf("@"))) ;
 		}
-		return dao.insertUser(user) ;
+		return userDao.insertUser(user) ;
 	}
 
 	/**
@@ -64,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int userUpdate(User user) {
 		// TODO Auto-generated method stub
-		return dao.updateUser(user) ;
+		return userDao.updateUser(user) ;
 	}
 	
 	/**
@@ -73,7 +69,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByUser(User user) {
 		// TODO Auto-generated method stub
-		return dao.selectUsersByUser(user);
+		return userDao.selectUsersByUser(user);
 	}
 	
 	/**
@@ -83,7 +79,7 @@ public class UserServiceImpl implements UserService {
 	public int userPasswordUpdate(User user) {
 		// TODO Auto-generated method stub
 		user.setPassword(user.getPassword()) ;
-		return dao.updateUserPwd(user) ;
+		return userDao.updateUserPwd(user) ;
 	}
 	/**
 	 * 用户登录

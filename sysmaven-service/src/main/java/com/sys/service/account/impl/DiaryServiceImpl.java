@@ -3,6 +3,7 @@ package com.sys.service.account.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sys.dao.account.DiaryDao;
@@ -15,17 +16,9 @@ import com.sys.service.account.DiaryService;
  */
 @Service("diaryService")
 public class DiaryServiceImpl implements DiaryService {
-
+	@Autowired
 	private DiaryDao diaryDao ;
-	
-	public DiaryDao getDiaryDao() {
-		return diaryDao;
-	}
-
-	public void setDiaryDao(DiaryDao diaryDao) {
-		this.diaryDao = diaryDao;
-	}
-	
+		
 	@Override
 	public Diary findDiaryById(int id) {
 		return diaryDao.findDiaryById(id);

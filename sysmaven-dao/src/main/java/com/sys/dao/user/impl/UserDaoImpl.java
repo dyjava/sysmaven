@@ -3,12 +3,15 @@ package com.sys.dao.user.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.sys.common.CommUtil;
 import com.sys.common.Logs;
 import com.sys.dao.AbstractDBDao;
 import com.sys.dao.user.UserDao;
 import com.sys.domain.user.User;
 
+@Repository("userDao")
 public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	
 	/**

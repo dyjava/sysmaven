@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.sys.common.Logs;
 import com.sys.dao.AbstractDBDao;
 import com.sys.dao.account.IncomeDao;
@@ -12,6 +14,7 @@ import com.sys.domain.account.Income;
 /** 
  * by dyong 2010-6-16
  */
+@Repository("incomeDao")
 public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 	private String table = "income" ;
 	

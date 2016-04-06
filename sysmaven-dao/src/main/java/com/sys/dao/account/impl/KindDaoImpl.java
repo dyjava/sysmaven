@@ -3,6 +3,8 @@ package com.sys.dao.account.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.sys.common.Logs;
 import com.sys.dao.AbstractDBDao;
 import com.sys.dao.account.KindDao;
@@ -11,6 +13,7 @@ import com.sys.domain.account.Kind;
 /** 
  * by dyong 2010-6-16
  */
+@Repository("kindDao")
 public class KindDaoImpl extends AbstractDBDao implements KindDao {
 	private String table = "kind" ;
 	

@@ -3,6 +3,7 @@ package com.sys.service.account.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sys.dao.account.KindDao;
@@ -15,14 +16,9 @@ import com.sys.service.account.KindService;
 @Service("kindService")
 public class KindServiceImpl implements KindService {
 
+	@Autowired
 	private KindDao kindDao ;
 	
-	public KindDao getKindDao() {
-		return kindDao;
-	}
-	public void setKindDao(KindDao kindDao) {
-		this.kindDao = kindDao;
-	}
 	@Override
 	public int insertKind(Kind kind) {
 		kind.setUid(UUID.randomUUID().toString()) ;

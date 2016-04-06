@@ -3,6 +3,8 @@ package com.sys.dao.account.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.sys.common.Logs;
 import com.sys.dao.AbstractDBDao;
 import com.sys.dao.account.DiaryDao;
@@ -12,6 +14,7 @@ import com.sys.domain.user.User;
 /** 
  * by dyong 2010-6-16
  */
+@Repository("diaryDao")
 public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 	private String table = "diary" ;
 	

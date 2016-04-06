@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sys.dao.account.AccountDao;
@@ -18,16 +19,9 @@ import com.sys.service.account.AccountService;
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
 
+	@Autowired
 	private AccountDao accountDao ;
 	
-	public AccountDao getAccountDao() {
-		return accountDao;
-	}
-
-	public void setAccountDao(AccountDao accountDao) {
-		this.accountDao = accountDao;
-	}
-
 	@Override
 	public Account findAccountById(int id) {
 		// TODO Auto-generated method stub

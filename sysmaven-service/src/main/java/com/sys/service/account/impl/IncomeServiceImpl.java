@@ -3,6 +3,7 @@ package com.sys.service.account.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sys.dao.account.IncomeDao;
@@ -14,16 +15,10 @@ import com.sys.service.account.IncomeService;
  */
 @Service("incomeService")
 public class IncomeServiceImpl implements IncomeService {
+	
+	@Autowired
 	private IncomeDao incomeDao ;
 	
-	public IncomeDao getIncomeDao() {
-		return incomeDao;
-	}
-
-	public void setIncomeDao(IncomeDao incomeDao) {
-		this.incomeDao = incomeDao;
-	}
-
 	@Override
 	public Income findIncomeById(int id) {
 		// TODO Auto-generated method stub

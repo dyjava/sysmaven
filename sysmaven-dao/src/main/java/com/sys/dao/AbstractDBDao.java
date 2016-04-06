@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.sys.common.Logs;
@@ -17,6 +18,7 @@ import com.sys.common.Logs;
  */
 public abstract class AbstractDBDao {
 
+	@Autowired
 	private JdbcTemplate jdbc ;
 
 	public JdbcTemplate getJdbc() {

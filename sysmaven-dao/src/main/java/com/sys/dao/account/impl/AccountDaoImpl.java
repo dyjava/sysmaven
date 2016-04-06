@@ -3,6 +3,8 @@ package com.sys.dao.account.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.sys.common.Logs;
 import com.sys.dao.AbstractDBDao;
 import com.sys.dao.account.AccountDao;
@@ -13,6 +15,7 @@ import com.sys.domain.account.AccountTable;
 /** 
  * by dyong 2010-6-16
  */
+@Repository("accountDao")
 public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 	
 	private String table = "account" ;
