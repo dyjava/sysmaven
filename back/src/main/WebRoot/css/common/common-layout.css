@@ -1,0 +1,129 @@
+.caissa-content-pad01{ padding:15px 40px; overflow:hidden;}
+/**/
+/*表格input输入布局*/
+.caissa-tb-tbip .caissa-wd130{ text-align:right;}
+.caissa-tb-tbip .caissa-wd130 em{ color:#f7af00;} 
+.caissa-tb-tbip td p{ float:left;}
+.caissa-tb-tbip td p span{ line-height:25px;}
+.caissa-tb-tbip td strong{ font-weight:normal; color:#999; padding-left:5px;}
+.caissa-tb-tbip td input{ border:1px solid #d0d0d0; border-radius:2px; padding:2px 0 2px 5px;}
+/*end*/
+
+/*文字 input 文字input*/
+.caissa-tb-t-in-t-in{width: 100%;}
+.caissa-tb-t-in-t-in tr {margin-top: 15px;}
+.caissa-tb-t-in-t-in td {padding: 10px;}
+.caissa-tb-t-in-t-in td.caissa-wd135 {text-align: right;line-height: 30px;}
+.caissa-tb-t-in-t-in td.caissa-wd135 span {padding-right: 10px;}
+.caissa-tb-t-in-t-in td.td_4 {line-height: 50px;text-align: center;}
+
+/*星期一到星期日一行布局*/
+.caissa-ip-list{overflow:hidden; clear:both; padding:2px;}
+.caissa-ip-list ul{ float:left;}
+.caissa-ip-list ul li{ display:inline-block; margin-right:5px; line-height:20px;}
+.caissa-ip-list ul li input{ margin-right:3px;}
+/*end*/
+
+/*文字 input 单位 布局*/
+.caissa-t-in-t{clear:both;overflow:hidden; padding:2px;}
+.caissa-t-in-t ul li{ overflow:hidden; padding:8px 0;}
+.caissa-t-in-t ul li label{color:#676767; float:left; text-align:right; width:175px; line-height:30px;}
+.caissa-t-in-t ul li label em{color:#f7af00;}
+.caissa-t-in-t ul li input[type='text']{ width:270px;}
+.caissa-t-in-t ul li input[type='radio']{margin-left:10px; margin-right:3px;}
+.caissa-t-in-t ul li input[type='radio']:first-child{ margin-left:0;}
+.caissa-t-in-t ul li i{display:inline-block; height:30px; padding-left:5px; line-height:30px; font-style:normal;}
+.caissa-t-in-t ul li textarea{ border:1px solid #d0d0d0; width:270px; height:80px;}
+
+/*左宽右窄布局*/
+.caissa-bg-colf7{ background:#f7f7f7;}
+.caissa-layout-l700{border:1px solid #d7e8f6; float:left; width:698px;}
+.caissa-layout-r378{border:1px solid #d7e8f6; float:right; width:378px;}
+
+/*左侧布局*/
+/*.caissa-layout-w700{ width:658px; padding:20px; background:#fbfcfd}
+.caissa-layout-w700 ul li{ overflow:hidden; padding:10px 0; color:#676767;}
+.caissa-layout-w700 ul li label{text-align:right; width:100px; float:left;}
+.caissa-layout-w700 ul li label em{color:#f7af00; position:relative; top:2px; padding-right:2px;}
+.caissa-layout-w700 ul li i{display:inline-block; height:30px; padding-left:5px; line-height:30px; font-style:normal;}
+*/
+.caissa-layout-pub{overflow:hidden;}
+.caissa-layout-pub ul li{*+height:1%; padding:8px 0; color:#676767;}
+.caissa-layout-pub ul li:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.caissa-layout-pub ul li label{text-align:right; width:140px; color:#676767; font-size:14px; float:left; height:30px; line-height:30px;}
+.caissa-layout-pub ul li label em{color:#f7af00; position:relative; top:2px; padding-right:2px;}
+.caissa-layout-pub ul li i{display:inline-block; height:30px; padding-left:5px; line-height:30px; font-style:normal;}
+.caissa-layout-pub ul li span{height:30px; line-height:30px; display:block; float:left;}
+.caissa-layout-pub ul li .caissa-t-marl140{line-height: 30px; margin-left: 140px;}
+
+
+
+/*粉色背景*/
+.caissa-layout-dotline{background:#fcfcf1; border:1px dotted #feedb3; padding:5px 10px 10px;}
+.caissa-layout-dotline dl{ overflow:hidden;}
+.caissa-layout-dotline dl dt{ float:left; width:90px; text-align:right;}
+.caissa-layout-dotline dl dd{ float:left;}
+.caissa-layout-dotline dl dd table tr td{ padding-bottom:15px;}
+
+/*蓝线表格*/
+.caissa-tb-bline{border-top:1px solid #cfcfd1;border-right:1px solid #cfcfd1; font-size:12px; width:100%; table-layout:fixed;}
+.caissa-tb-bline td{border-left:1px solid #cfcfd1; border-bottom:1px solid #cfcfd1; padding:5px;}
+.caissa-tb-bline .caissa-td54{ text-align:right; background:#bfeff3; overflow:hidden; width:70px;}
+.caissa-tb-bline .title01{background:#15b4f8; text-align:center; color:#fff; width:60px;}
+.caissa-tb-bline .caissa-alignce{ background:#fff; width:60px; height:30px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+
+/*底部按钮*/
+.caissa-divbtn{overflow:hidden; text-align:center;}
+
+
+.caissa-layout-mod01{overflow:hidden; padding:20px; background:#fcfcf1; border:#ffe9a3 dotted 1px; color:#686868; font-size:14px;}
+.caissa-layout-mod01 dl,.caissa-layout-mod01 dl dt,.caissa-layout-mod01 dl dd{overflow:hidden;}
+.caissa-layout-mod01 dl dt span{font-family:Arial, Helvetica, sans-serif; display:block; line-height:26px;}
+.caissa-layout-mod01 dl dt strong{display:block; font-weight:normal; line-height:26px;}
+.caissa-layout-mod01 dl dd span{display:block; float:left; padding-right:30px; line-height:26px;}
+
+.caissa-layout-mod02{border:#e8e8e8 dashed 1px; border-left:none; border-right:none; background:#fafafa; padding:10px 30px 15px;}
+.caissa-layout-mod02 ul{padding-left:100px;}
+.caissa-layout-mod02 ul li{line-height:28px; padding:5px 0px;*+height:1%;}
+.caissa-layout-mod02 ul li:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.caissa-layout-mod02 label{float:left; text-align:right; width:80px; color:#676767;}
+.caissa-pub-spe{margin-left:80px;}
+.caissa-pub-spe p{display:block; padding-top:10px; font-size:0; clear:both;}
+
+.caissa-download{padding:5px 0px; overflow:hidden;}
+.caissa-download span:first-child{ color:#676767; padding-left:0;}
+.caissa-download span{font-size:14px; display:block; float:left; padding-left:15px;}
+.caissa-download a{color:#4f93fb; display:block; float:left; padding:0 3px;}
+
+/*日期列表*/
+.caissa-data-list{ background:#eef4fb; overflow:hidden; padding:0 30px;}
+.caissa-data-list ul{ overflow:hidden;}
+.caissa-data-list ul li{ color:#fff; background:#ccc; cursor:pointer; width:100px; text-align:center; float:left; margin:10px 15px; line-height:22px;}
+.caissa-data-list ul li.cur{background:#4f93fb;}
+
+/*文字 内容 布局*/
+.caissa-layout-mod03{overflow:hidden; padding:20px; }
+.caissa-layout-mod03 ul li{line-height:28px; padding:5px 0px; overflow:hidden;}
+.caissa-layout-mod03 label{float:left; text-align:right; width:90px; color:#676767;}
+
+/*背景色fcfcf1*/
+.caissa-bgfff{ background:#fff;}
+.caissa-bgf7{ background:#f7f7f7;}
+.caissa-bgfc{background:#fcfcf1;}
+.caissa-bgfa{ background:#fafafa;}
+.caissa-bt-e8-do{ border-top:1px dashed #e8e8e8}
+
+/*文字 input 文字input*/
+.caissa-t-in-t-in ul li{ overflow:hidden; padding:8px 0;}
+.caissa-t-in-t-in ul li p,.caissa-t-in-t-in ul li p span{ display:block; float:left;}
+.caissa-t-in-t-in ul li p span label{ width:90px; text-align:right; line-height:28px; float:left; height:28px;}
+
+/*txt*/
+.caissa-down-txt{overflow:hidden; padding:20px;}
+.caissa-down-txt dl{ overflow:hidden;}
+.caissa-down-txt dl dt{color:#676767;float:left;height:28px;line-height:28px;text-align:right;width:90px;}
+.caissa-down-txt dl dd{ float:left;}
+.caissa-down-txt dl dd p a{color:#4e93fa; margin:0 10px;}
+.caissa-down-txt dl dd p a:last-child{color:#97ca31;}
+.caissa-tbbug{height:0!important;}
+.caissa-tbbug th{ padding:0!important; border:none!important;}

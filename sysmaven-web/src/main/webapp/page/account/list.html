@@ -1,0 +1,265 @@
+<!--#include virtual="../common/header.html"-->
+
+
+	<div class="caissa-main">
+    	<!--面包屑start-->
+        <div class="caissa-nav caissa-marb5"><span>位置：</span><span><a href="">商店</a></span><span> &gt; </span><span><a href="">信息发布</a></span></div>
+        <!--面包屑end--> 
+        <div class="hr_10"></div>
+        <div class="caissa-content">
+            <h1 class="caissa-title02"><p><span>录入信息</span></p></h1>
+            
+            <form id="searchform" name="searchform" action="./export.do" method="post">
+            <table class="caissa-tb-t-in-t-in">
+				 <tr>
+                    <td class="caissa-wd135">商店名称（英）</td>
+                    <td>
+                        <input type="text" class="caissa-input" id="enName" style="height:30px;" name="enName" data-options="required:false,validType:['length[0,100]','english']"/>
+                    </td>
+                    <td class="caissa-wd135">商店名称（中）</td>
+                    <td>
+                        <input type="text" class="caissa-input" style="height:30px;" name="cnName" value="" data-options="required:false,validType:['length[0,100]']"/>
+                    </td>
+                    <td class="caissa-wd135"><span>商店类别</span></td>
+                    <td>
+                        <select id="test" name="typeCode" class="easyui-combobox" style="height:30px; width:170px;">
+                            <option value="">不限</option>
+                            <option value="1">购物店</option>
+                            <option value="2">品牌店</option>
+                            <option value="3">免税店</option>
+                            <option value="4">机场免税店</option>
+                        </select>
+                    </td>
+                </tr>
+				<tr>
+                    <td class="caissa-td85">供应商名称</td>
+                    <td>
+                        <input type="text" class="caissa-input" id="supNames" style="height:30px;" name="" value="" />
+                        <input type="hidden" class="caissa-wd168" id="supIds" style="height:30px;" name="supIds" value="" />
+                    </td>
+                    <td class="caissa-td85"><span>资源状态</span></td>
+                    <td>
+                        <select id="test" name="resourceStatus" class="easyui-combobox" style="height:30px; width:170px;">
+                            <option value="">不限</option>
+                            <option value="0">储备</option>
+                            <option value="1">签约</option>
+                        </select>
+                    </td>
+                    <td class="caissa-td85"><span>是否启用</span></td>
+                    <td>
+                        <select id="test" name="isEnabled" class="easyui-combobox" style="height:30px; width:170px;">
+                            <option value="">不限</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                   <td class="caissa-td85"><span>适合团组类型</span></td>
+                   <td>
+                       <select id="test" name="groupCodes" class="easyui-combobox" style="height:30px; width:170px;">
+                           <option value="">不限</option>
+                           <option value="1">系列团</option>
+                           <option value="2">单团</option>
+                           <option value="3">同业团</option>
+                           <option value="4">邮轮团</option>
+                           <option value="5">包机团组</option>
+                           <option value="6">包船团组</option>
+                           <option value="7">自由行</option>
+                           <option value="8">主题旅游</option>
+                           <option value="9">其他</option>
+                       </select>
+                   </td>
+                   <td class="caissa-wd135">城市/国家</td>
+                   <td>
+                   <div class="caissa-srh-tip">
+                        <input type="text" class="caissa-input" style="height:30px;" name="city" id="city" value="" autocomplete="off"/>
+                        <div id="citytips" class="caissa-tip-list" style="display:block">
+						<p></p>
+						</div>
+					</div>
+						<input type="hidden" id="continentcode" name="continentCode" value="" />
+						<input type="hidden" id="countrycode" name="countryCode" value="" />
+						<input type="hidden" id="citycode"  name="cityCode" value="" />
+                   </td>
+                   <td class="caissa-wd135"></td>
+                   <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="caissa-alignce">
+                    <input type="button" class="caissa-btn01" id="listsearch" value="查询操作" />
+                    <input type="reset" class="caissa-btn02" value="清空操作" />
+                    </td>
+                </tr>
+            </table>
+			</form>
+        </div>
+		<div class="caissa-content">
+            <h1 class="caissa-title02"><p><span>查询结果</span></p></h1>
+            <div class="caissa-toolbar">
+            	<a class="caissa-btn03" href="javascript:void(0)" id="add">新增</a>
+                <a class="caissa-btn03" href="javascript:void(0)" id="addin">导入</a>
+                <a class="caissa-btn03" href="javascript:exportexcel()" id="addexport">导出</a>
+				<a class="caissa-btn03" href="javascript:activated(1)" id="activated">启用</a>
+				<a class="caissa-btn03" href="javascript:activated(0)" id="forbidden">禁用</a>
+				<a class="caissa-btn03" href="javascript:activated(2)" id="delete">删除</a>
+            </div>
+            <table class="table_ty" id="tablelist" ></table>
+        </div>
+
+   </div>
+<div id="dialog"></div>
+</body>
+</html>
+<script type="text/javascript" src="../source/js/dict_data.js"></script>
+<script type="text/javascript" src="../source/js/source_dialog.js"></script>
+<script type="text/javascript">
+	singleSelect = true ;
+    $(function(){
+    	$("#tablelist").datagrid({
+        	url: "list.do",
+        	method: "get",
+        	//queryParams: $("#searchform").serializeObject() ,
+        	singleSelect : false,
+			collapsible : true,
+			autoRowHeight : 35,
+			fitColumns : false,
+			pagination : true,
+			rownumbers : true,
+			pageSize:10,
+        	columns:[[
+        	          {field:'ck',checkbox:true},
+        	          {field:'cnName', title:'商店名称（中）', width:120, align:'center',
+        	        	  formatter:function(value, row, index){
+        	        		  return "<a href=\"javascript:info('"+ row.dbId +"')\">"+ value +"</a>" ;
+        	        	  }
+        	          },
+        	          {field:'enName',title:'商店名称（英）', width:120},
+        	          //{field:'continent',title:'所在州', width:120},
+        	          //{field:'country',title:'国家', width:120},
+        	          {field:'city',title:'城市', width:150},
+        	          {field:'type',title:'商店类别', width:60},
+          	          {field:'location', title:'位置', width:120},
+        	          {field:'groups', title:'适合团类型', width:120},
+        	          {field:'businessHours', title:'营业时间', width:60},
+        	          {field:'daysOff', title:'休息日', width:60},
+        	          {field:'majorProducts', title:'经营商品', width:60},
+        	          {field:'includeBrands', title:'涉及品牌', width:60},
+        	          {field:'source', title:'资源来源', width:80},
+        	          {field:'supNames', title:'供应商名称', width:120},
+        	          {field:'contactNames', title:'联系人', width:60},
+        	          {field:'resourceStatus', title:'资源状态', width:60,align:'center',
+        	        	  formatter:function(value, row, index){
+        	        		  if(value=='1'){
+        	        			  return "签约" ;
+        	        		  } else {
+        	        			  return "储备" ;
+        	        		  }
+        	        	  }
+        	          },
+        	          {field:'isEnabled', title:'是否启用', width:60,align:'center',
+        	        	  formatter:function(value, row, index){
+        	        		  if(value=='1'){
+        	        			  return "是" ;
+        	        		  } else {
+        	        			  return "否" ;
+        	        		  }
+        	        	  }
+        	          },
+        	          {field:'dbId', title:'操作', width:80, align:'left', 
+        	        	  formatter:function(value, row, index){
+        	        		  return "<a href=\"javascript:update('"+ row.dbId +"')\">更新</a>&nbsp;&nbsp;"+
+        	        		  "<a href=\"javascript:del('"+ row.dbId +"')\">删除</a>" ;
+        	        	  }
+        	          }
+        	        ]]
+       });
+    	//添加
+    	$("#add").on("click",function() {
+    		window.location.href="step1.html" ;
+    	})
+    	//查询
+    	$("#listsearch").on("click",function() {
+    		$('#tablelist').datagrid('load',$('#searchform').serializeObject());
+    	})
+    	
+    	/* $("#activated, #forbidden").on("click", function(){
+    		if($(this).attr("id") == "activated"){
+    			activated(1);
+    		}else{
+    			activated(0);
+    		}
+    	}) */
+    	
+    	
+    })
+    
+    /* function activated(activate){
+    	var info = "";
+    	if(activate && activate == 1){
+    		info = "确定启用";
+    	}else{
+    		activate = 0;
+    		info = "确定禁用";
+    	}
+    	var sels = $("#tablelist").datagrid("getSelections")
+		if(sels){
+			var ids = new Array()
+			for(var i = 0; i < sels.length; i++){
+				if(sels[i].isEnabled != activate){
+					ids.push(sels[i].dbId);
+				}
+			}
+			if(ids && ids.length > 0){
+				$.messager.confirm('Confirm', info, function(r){
+					if (r){
+	    				$.post('./activated.do', {dbIds: ids.join(","), isEnabled: activate}, function(data){
+	    					if(data < 0){
+	    						$.messager.alert('操作提示', "操作失败，稍后再试");
+	    					}else{
+	    						$('#tablelist').datagrid("reload");
+	    					}
+	    				},'json')
+					}
+		        })
+			}
+			
+		}
+    }
+     */
+    
+    //详情
+    function info(dbId){
+    	window.location.href="info.html?dbId="+dbId ;
+    }
+    //更新
+    function update(dbId){
+    	window.location.href="step1.html?dbId="+dbId ;
+    }
+    //删除
+    function del(dbId){
+    	$.messager.confirm('确认删除', '您确认要删除吗？', function(r){
+    		if (r){
+	    	$.get('del.do',{"dbId":dbId},function(result){
+	    		var message = "删除失败，请稍后再试." ;
+	            if (result == 1){
+	                $('#tablelist').datagrid('reload');    // reload the user data
+	                message = "删除成功。" ;
+	            }
+                $.messager.show({
+                	title:'操作提示',
+                	msg:message,
+                	timeout:3000,
+                	showType:'show'
+                });
+	        });
+    		}
+    	});
+    }
+	function exportexcel(){
+		$("#searchform").submit();
+//		$.get("./export.do", $('#searchform').serializeObject(), function (result) {
+//			alert("商店导出");
+//		})
+	}
+</script>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="no">
+
+	<!-- User
+	<bean id="userServiceTarget"
+		class="com.sys.spring.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<bean id="userService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="target" ref="userServiceTarget" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="find*">
+					PROPAGATION_REQUIRED,readOnly
+				</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	 
+	<!--  -->
+	<bean id="accountService"
+		class="com.sys.spring.account.service.AccountServiceImpl">
+		<property name="accountDao" ref="accountDao" />
+	</bean>
+	
+	<bean id="incomeService"
+		class="com.sys.spring.account.service.IncomeServiceImpl">
+		<property name="incomeDao" ref="incomeDao" />
+	</bean>
+	
+	<bean id="diaryService"
+		class="com.sys.spring.account.service.DiaryServiceImpl">
+		<property name="diaryDao" ref="diaryDao" />
+	</bean>
+	
+	<bean id="kindService"
+		class="com.sys.spring.account.service.KindServiceImpl">
+		<property name="kindDao" ref="kindDao" />
+	</bean>
+	
+	
+	<!-- 用户信息服务  -->
+	<bean id="userService" class="com.sys.spring.user.service.UserServiceImpl">
+	   <property name="dao" ><ref bean="userDao"/> </property>
+	</bean>
+	
+</beans>

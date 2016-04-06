@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.caissa.ordercenter.domain.po" />
+        <property name="mapperLocations" value="classpath:/mybatis/mapper/*Mapper.xml" />
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.caissa.ordercenter.dao" />
+        <property name="annotationClass" value="com.caissa.ordercenter.dao.mybatis.MyBatisRepository"/>
+    </bean>
+    
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+	    <!-- 基本配置，访问数据库的driver、url、user、password -->
+	    <property name="driverClassName" value="${jdbc.druid.driverClassName}" />
+	    <property name="url" value="${jdbc.druid.url}" />
+	    <property name="username" value="${jdbc.druid.username}" />
+	    <property name="password" value="${jdbc.druid.password}" />
+	    <!-- 配置初始化大小、最大、最小 -->
+	    <property name="initialSize" value="${jdbc.druid.initialSize}" />
+	    <property name="maxActive" value="${jdbc.druid.maxActive}" />
+	    <property name="minIdle" value="${jdbc.druid.minIdle}" />
+	    <!-- 配置获取连接等待超时的时间，单位是毫秒 -->
+	    <property name="maxWait" value="${jdbc.druid.maxWait}" />
+	    <!-- 配置监控统计拦截的filters -->
+	    <property name="filters" value="${jdbc.druid.filters}" />
+	    <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+	    <property name="timeBetweenEvictionRunsMillis" value="${jdbc.druid.timeBetweenEvictionRunsMillis}" />
+	    <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+	    <property name="minEvictableIdleTimeMillis" value="${jdbc.druid.minEvictableIdleTimeMillis}" />
+	    <!-- 用来检测连接是否有效的sql，要求是一个查询语句。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。 -->
+	    <!-- 查询语句需要根据不同的数据源进行调整设置 -->
+	    <property name="validationQuery" value="${jdbc.druid.validationQuery}" />
+	    <!-- 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
+	    <property name="testWhileIdle" value="${jdbc.druid.testWhileIdle}" />
+	    <!-- 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+	    <property name="testOnBorrow" value="${jdbc.druid.testOnBorrow}" />
+	    <!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能 -->
+	    <property name="testOnReturn" value="${jdbc.druid.testOnReturn}" />
+	    <!-- 对于长时间不使用的连接强制关闭 -->
+	    <property name="removeAbandoned" value="${jdbc.druid.removeAbandoned}" />
+	    <!-- 超过30分钟开始关闭空闲连接 -->
+	    <property name="removeAbandonedTimeout" value="${jdbc.druid.removeAbandonedTimeout}" />
+	    <!-- 将当前关闭动作记录到日志 -->
+	    <property name="logAbandoned" value="${jdbc.druid.logAbandoned}" />
+	    <!-- 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大。-->
+	    <property name="poolPreparedStatements" value="${jdbc.druid.poolPreparedStatements}" />
+	    <!-- 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。 -->
+	    <property name="maxOpenPreparedStatements" value="${jdbc.druid.maxOpenPreparedStatements}" />
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.druid.maxPoolPreparedStatementPerConnectionSize}" />
+	</bean>
+	
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

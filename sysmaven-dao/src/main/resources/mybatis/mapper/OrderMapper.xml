@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.caissa.ordercenter.dao.OrderDao">
+
+    <resultMap id="OrderItemMap" type="com.caissa.ordercenter.export.response.OrderItem">
+        <result column="db_id" property="dbId" jdbcType="VARCHAR" />
+		<result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+		<result column="business_line" property="businessLine" jdbcType="VARCHAR" />
+		<result column="product_name" property="productName" jdbcType="VARCHAR" />
+		<result column="client" property="client" jdbcType="VARCHAR" />
+		<result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+		<result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+		<result column="channel_attribute" property="channelAttribute" jdbcType="VARCHAR" />
+		<result column="channel_type" property="channelType" jdbcType="VARCHAR" />
+		<result column="operator_third_party_id" property="operatorThirdPartyId" jdbcType="VARCHAR" />
+		<result column="operator_third_party_name" property="operatorThirdPartyName" jdbcType="VARCHAR" />
+		<result column="activity_id" property="activityId" jdbcType="VARCHAR" />
+		<result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+		<result column="enterprise_customer_id" property="enterpriseCustomerId" jdbcType="VARCHAR" />
+		<result column="enterprise_customer_name" property="enterpriseCustomerName" jdbcType="VARCHAR" />
+		<result column="enterprise_customer_type" property="enterpriseCustomerType" jdbcType="VARCHAR" />
+		<result column="enterprise_worker_id" property="enterpriseWorkerId" jdbcType="VARCHAR" />
+		<result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+		<result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+		<result column="customer_mobile" property="customerMobile" jdbcType="VARCHAR" />
+		<result column="product_sales_type" property="productSalesType" jdbcType="VARCHAR" />
+		<result column="order_amount" property="orderAmount" jdbcType="DECIMAL" />
+		<result column="discount_amount_running" property="discountAmountRunning" jdbcType="DECIMAL" />
+		<result column="discount_amount_excluding" property="discountAmountExcluding" jdbcType="DECIMAL" />
+		<result column="real_received_amount" property="realReceivedAmount" jdbcType="DECIMAL" />
+		<result column="the_original_currency" property="theOriginalCurrency" jdbcType="VARCHAR" />
+		<result column="developing_person_id" property="developingPersonId" jdbcType="VARCHAR" />
+		<result column="developing_person_name" property="developingPersonName" jdbcType="VARCHAR" />
+		<result column="sales_department" property="salesDepartment" jdbcType="VARCHAR" />
+		<result column="sales_department_id" property="salesDepartmentId" jdbcType="VARCHAR" />
+		<result column="sales_person_id" property="salesPersonId" jdbcType="VARCHAR" />
+		<result column="sales_person" property="salesPerson" jdbcType="VARCHAR" />
+		<result column="sales_acceptance_status_online" property="salesAcceptanceStatusOnline" jdbcType="DECIMAL" />
+		<result column="service_operation_department" property="serviceOperationDepartment" jdbcType="VARCHAR" />
+		<result column="service_operator_id" property="serviceOperatorId" jdbcType="VARCHAR" />
+		<result column="service_operator_name" property="serviceOperatorName" jdbcType="VARCHAR" />
+		<result column="service_acceptance_status" property="serviceAcceptanceStatus" jdbcType="VARCHAR" />
+		<result column="create_person_id" property="createPersonId" jdbcType="VARCHAR" />
+		<result column="create_person_name" property="createPersonName" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="order_common_status" property="orderCommonStatus" jdbcType="VARCHAR" />
+		<result column="order_current_status" property="orderCurrentStatus" jdbcType="VARCHAR" />
+		<result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+		<result column="current_payment_status" property="currentPaymentStatus" jdbcType="VARCHAR" />
+		<result column="business_line_id" property="businessLineId" jdbcType="VARCHAR" />
+		<result column="service_operation_dep_id" property="serviceOperationDepId" jdbcType="VARCHAR" />
+		
+		<collection property="products"  resultMap="productsMap"/>
+    </resultMap>
+    
+    <resultMap id="productsMap" type="com.caissa.ordercenter.export.response.OrderProduct">
+        <result column="db_id" property="dbId" jdbcType="VARCHAR" />
+		<result column="order_db_id" property="orderDbId" jdbcType="VARCHAR" />
+		<result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+		<result column="product_name" property="productName" jdbcType="VARCHAR" />
+		<result column="product_id" property="productId" jdbcType="VARCHAR" />
+		<result column="key_TIMESTAMP" property="keyDate" jdbcType="TIMESTAMP" />
+		<result column="product_quantity" property="productQuantity" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+    o.DB_ID,o.ORDER_NUM,BUSINESS_LINE,o.PRODUCT_NAME,CLIENT,CHANNEL_ID,CHANNEL_NAME,CHANNEL_ATTRIBUTE,CHANNEL_TYPE,OPERATOR_THIRD_PARTY_ID,OPERATOR_THIRD_PARTY_NAME,ACTIVITY_ID,
+	ACTIVITY_NAME,ENTERPRISE_CUSTOMER_ID,ENTERPRISE_CUSTOMER_NAME,ENTERPRISE_CUSTOMER_TYPE,ENTERPRISE_WORKER_ID,CUSTOMER_ID,CUSTOMER_NAME,CUSTOMER_MOBILE,PRODUCT_SALES_TYPE,
+	ORDER_AMOUNT,DISCOUNT_AMOUNT_RUNNING,DISCOUNT_AMOUNT_EXCLUDING,REAL_RECEIVED_AMOUNT,THE_ORIGINAL_CURRENCY,DEVELOPING_PERSON_ID,DEVELOPING_PERSON_NAME,SALES_DEPARTMENT,SALES_PERSON_ID,
+	SALES_PERSON,SALES_ACCEPTANCE_STATUS_ONLINE,SERVICE_OPERATION_DEPARTMENT,SERVICE_OPERATOR_ID,SERVICE_OPERATOR_NAME,SERVICE_ACCEPTANCE_STATUS,CREATE_PERSON_ID,CREATE_PERSON_NAME,
+	CREATE_TIME,ORDER_COMMON_STATUS,ORDER_CURRENT_STATUS,LAST_UPDATE_TIME,CURRENT_PAYMENT_STATUS,SALES_DEPARTMENT_ID,BUSINESS_LINE_ID,SERVICE_OPERATION_DEP_ID
+    </sql>
+    
+    <!-- 监控数据库 -->
+	<select id="aliveCheck" resultType="java.util.HashMap">
+        <![CDATA[
+        select 'A connection is active' re from dual
+         ]]>
+    </select>
+    
+	<select id="selectSequenceNum" resultType="java.util.HashMap">
+		SELECT SEQ_ORDERID.nextval as id FROM dual
+	</select>
+	
+	<insert id="insertOrder" parameterType="com.caissa.ordercenter.export.response.OrderItem" >
+		insert into ORDERS 
+		
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+        	db_id,order_num,
+        	<if test="businessLine != null">
+                business_line,
+            </if>
+        	<if test="productName != null">
+                product_name,
+            </if>
+        	<if test="client != null">
+                client,
+            </if>
+        	<if test="channelId != null">
+                channel_id,
+            </if>
+	        <if test="channelName != null" >
+	            channel_name,
+	        </if>
+	      <if test="channelAttribute != null" >
+	        channel_attribute,
+	      </if>
+	      <if test="channelType != null" >
+	        channel_type ,
+	      </if>
+	      <if test="operatorThirdPartyId != null" >
+	        operator_third_party_id ,
+	      </if>
+	      <if test="operatorThirdPartyName != null" >
+	        operator_third_party_name ,
+	      </if>
+	      <if test="activityId != null" >
+	        activity_id ,
+	      </if>
+	      <if test="activityName != null" >
+	        activity_name ,
+	      </if>
+	      <if test="enterpriseCustomerId != null" >
+	        enterprise_customer_id ,
+	      </if>
+	      <if test="enterpriseCustomerName != null" >
+	        enterprise_customer_name ,
+	      </if>
+	      <if test="enterpriseCustomerType != null" >
+	        enterprise_customer_type ,
+	      </if>
+	      <if test="enterpriseWorkerId != null" >
+	        enterprise_worker_id ,
+	      </if>
+	      <if test="customerId != null" >
+	        customer_id ,
+	      </if>
+	      <if test="customerName != null" >
+	        customer_name ,
+	      </if>
+	      <if test="customerMobile != null" >
+	        customer_mobile ,
+	      </if>
+	      <if test="productSalesType != null" >
+	        product_sales_type ,
+	      </if>
+	      <if test="orderAmount != null" >
+	        order_amount ,
+	      </if>
+	      <if test="discountAmountRunning != null" >
+	        discount_amount_running ,
+	      </if>
+	      <if test="discountAmountExcluding != null" >
+	        discount_amount_excluding ,
+	      </if>
+	      <if test="realReceivedAmount != null" >
+	        real_received_amount ,
+	      </if>
+	      <if test="theOriginalCurrency != null" >
+	        the_original_currency ,
+	      </if>
+	      <if test="developingPersonId != null" >
+	        developing_person_id ,
+	      </if>
+	      <if test="developingPersonName != null" >
+	        developing_person_name ,
+	      </if>
+	      <if test="salesDepartment != null" >
+	        sales_department ,
+	      </if>
+	      <if test="salesDepartmentId != null" >
+	        sales_department_id ,
+	      </if>
+	      <if test="salesPersonId != null" >
+	        sales_person_id ,
+	      </if>
+	      <if test="salesPerson != null" >
+	        sales_person ,
+	      </if>
+	      <if test="salesAcceptanceStatusOnline != null" >
+	        sales_acceptance_status_online ,
+	      </if>
+	      <if test="serviceOperationDepartment != null" >
+	        service_operation_department ,
+	      </if>
+	      <if test="serviceOperatorId != null" >
+	        service_operator_id ,
+	      </if>
+	      <if test="serviceOperatorName != null" >
+	        service_operator_name ,
+	      </if>
+	      <if test="serviceAcceptanceStatus != null" >
+	        service_acceptance_status ,
+	      </if>
+	      <if test="createPersonId != null" >
+	        create_person_id ,
+	      </if>
+	      <if test="createPersonName != null" >
+	        create_person_name ,
+	      </if>
+	      <if test="createTime != null" >
+	        create_time ,
+	      </if>
+	      <if test="orderCommonStatus != null" >
+	        order_common_status ,
+	      </if>
+	      <if test="orderCurrentStatus != null" >
+	        order_current_status ,
+	      </if>
+	      <if test="lastUpdateTime != null" >
+	        last_update_time ,
+	      </if>
+	      <if test="currentPaymentStatus != null" >
+	        current_payment_status ,
+	      </if>
+	      
+	      <if test="businessLineId != null" >
+	        BUSINESS_LINE_ID ,
+	      </if>
+	      <if test="serviceOperationDepId != null" >
+	        SERVICE_OPERATION_DEP_ID ,
+	      </if>
+		</trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+        	#{dbId,jdbcType=VARCHAR},#{orderNum,jdbcType=VARCHAR},
+        	<if test="businessLine != null">
+                #{businessLine,jdbcType=VARCHAR},
+            </if>
+        	<if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+        	<if test="client != null">
+                #{client,jdbcType=VARCHAR},
+            </if>
+        	<if test="channelId != null">
+                #{channelId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelName != null" >
+                #{channelName,jdbcType=VARCHAR},
+	        </if>
+	      <if test="channelAttribute != null" >
+	        #{channelAttribute,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channelType != null" >
+	        #{channelType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="operatorThirdPartyId != null" >
+	        #{operatorThirdPartyId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="operatorThirdPartyName != null" >
+	        #{operatorThirdPartyName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="activityId != null" >
+	        #{activityId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="activityName != null" >
+	        #{activityName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseCustomerId != null" >
+	        #{enterpriseCustomerId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseCustomerName != null" >
+	        #{enterpriseCustomerName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseCustomerType != null" >
+	        #{enterpriseCustomerType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseWorkerId != null" >
+	        #{enterpriseWorkerId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerId != null" >
+	        #{customerId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerName != null" >
+	        #{customerName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerMobile != null" >
+	        #{customerMobile,jdbcType=VARCHAR},
+	      </if>
+	      <if test="productSalesType != null" >
+	        #{productSalesType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderAmount != null" >
+	        #{orderAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="discountAmountRunning != null" >
+	        #{discountAmountRunning,jdbcType=DECIMAL},
+	      </if>
+	      <if test="discountAmountExcluding != null" >
+	        #{discountAmountExcluding,jdbcType=DECIMAL},
+	      </if>
+	      <if test="realReceivedAmount != null" >
+	        #{realReceivedAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="theOriginalCurrency != null" >
+	        #{theOriginalCurrency,jdbcType=VARCHAR},
+	      </if>
+	      <if test="developingPersonId != null" >
+	        #{developingPersonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="developingPersonName != null" >
+	        #{developingPersonName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesDepartment != null" >
+	        #{salesDepartment,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesDepartmentId != null" >
+	        #{salesDepartmentId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesPersonId != null" >
+	        #{salesPersonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesPerson != null" >
+	        #{salesPerson,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesAcceptanceStatusOnline != null" >
+	        #{salesAcceptanceStatusOnline,jdbcType=INTEGER},
+	      </if>
+	      <if test="serviceOperationDepartment != null" >
+	        #{serviceOperationDepartment,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceOperatorId != null" >
+	        #{serviceOperatorId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceOperatorName != null" >
+	        #{serviceOperatorName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceAcceptanceStatus != null" >
+	        #{serviceAcceptanceStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createPersonId != null" >
+	        #{createPersonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createPersonName != null" >
+	        #{createPersonName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createTime != null" >
+	        #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="orderCommonStatus != null" >
+	        #{orderCommonStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderCurrentStatus != null" >
+	        #{orderCurrentStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="lastUpdateTime != null" >
+	        #{lastUpdateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="currentPaymentStatus != null" >
+	        #{currentPaymentStatus,jdbcType=VARCHAR},
+	      </if>
+	      
+	      <if test="businessLineId != null" >
+	        #{businessLineId,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="serviceOperationDepId != null" >
+	        #{serviceOperationDepId,jdbcType=TIMESTAMP},
+	      </if>
+		</trim>
+		
+	</insert>
+	
+	<update id="updateOrder" parameterType="com.caissa.ordercenter.export.response.OrderItem" >
+	    update ORDERS
+	    <set >
+	    <!-- 
+	    	business_line = #{businessLine,jdbcType=VARCHAR},
+	    	product_name = #{productName,jdbcType=VARCHAR},
+	      <if test="client != null" >
+	        client = #{client,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channelId != null" >
+	        channel_id = #{channelId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channelName != null" >
+	        channel_name = #{channelName,jdbcType=VARCHAR},
+	      </if> -->
+	      <if test="channelAttribute != null" >
+	        channel_attribute = #{channelAttribute,jdbcType=VARCHAR},
+	      </if>
+	      <if test="channelType != null" >
+	        channel_type = #{channelType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="operatorThirdPartyId != null" >
+	        operator_third_party_id = #{operatorThirdPartyId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="operatorThirdPartyName != null" >
+	        operator_third_party_name = #{operatorThirdPartyName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="activityId != null" >
+	        activity_id = #{activityId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="activityName != null" >
+	        activity_name = #{activityName,jdbcType=VARCHAR},
+	      </if><!-- 
+	      <if test="enterpriseCustomerId != null" >
+	        enterprise_customer_id = #{enterpriseCustomerId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseCustomerName != null" >
+	        enterprise_customer_name = #{enterpriseCustomerName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseCustomerType != null" >
+	        enterprise_customer_type = #{enterpriseCustomerType,jdbcType=VARCHAR},
+	      </if>
+	      <if test="enterpriseWorkerId != null" >
+	        enterprise_worker_id = #{enterpriseWorkerId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerId != null" >
+	        customer_id = #{customerId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="customerName != null" >
+	        customer_name = #{customerName,jdbcType=VARCHAR},
+	      </if> -->
+	      <if test="customerMobile != null" >
+	        customer_mobile = #{customerMobile,jdbcType=VARCHAR},
+	      </if><!-- 
+	      <if test="productSalesType != null" >
+	        product_sales_type = #{productSalesType,jdbcType=VARCHAR},
+	      </if> -->
+	      <if test="orderAmount != null" >
+	        order_amount = #{orderAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="discountAmountRunning != null" >
+	        discount_amount_running = #{discountAmountRunning,jdbcType=DECIMAL},
+	      </if>
+	      <if test="discountAmountExcluding != null" >
+	        discount_amount_excluding = #{discountAmountExcluding,jdbcType=DECIMAL},
+	      </if>
+	      <if test="realReceivedAmount != null" >
+	        real_received_amount = #{realReceivedAmount,jdbcType=DECIMAL},
+	      </if>
+	      <if test="theOriginalCurrency != null" >
+	        the_original_currency = #{theOriginalCurrency,jdbcType=VARCHAR},
+	      </if><!-- 
+	      <if test="developingPersonId != null" >
+	        developing_person_id = #{developingPersonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="developingPersonName != null" >
+	        developing_person_name = #{developingPersonName,jdbcType=VARCHAR},
+	      </if> -->
+	      <if test="salesDepartment != null" >
+	        sales_department = #{salesDepartment,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesDepartmentId != null" >
+	        sales_department_id = #{salesDepartmentId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesPersonId != null" >
+	        sales_person_id = #{salesPersonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesPerson != null" >
+	        sales_person = #{salesPerson,jdbcType=VARCHAR},
+	      </if>
+	      <if test="salesAcceptanceStatusOnline != null" >
+	        sales_acceptance_status_online = #{salesAcceptanceStatusOnline,jdbcType=INTEGER},
+	      </if>
+	      <if test="serviceOperationDepartment != null" >
+	        service_operation_department = #{serviceOperationDepartment,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceOperatorId != null" >
+	        service_operator_id = #{serviceOperatorId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceOperatorName != null" >
+	        service_operator_name = #{serviceOperatorName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceAcceptanceStatus != null" >
+	        service_acceptance_status = #{serviceAcceptanceStatus,jdbcType=VARCHAR},
+	      </if><!-- 
+	      <if test="createPersonId != null" >
+	        create_person_id = #{createPersonId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createPersonName != null" >
+	        create_person_name = #{createPersonName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createTime != null" >
+	        create_time = #{createTime,jdbcType=TIMESTAMP},
+	      </if> -->
+	      <if test="orderCommonStatus != null" >
+	        order_common_status = #{orderCommonStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderCurrentStatus != null" >
+	        order_current_status = #{orderCurrentStatus,jdbcType=VARCHAR},
+	      </if>
+	      <if test="lastUpdateTime != null" >
+	        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="currentPaymentStatus != null" >
+	        current_payment_status = #{currentPaymentStatus,jdbcType=VARCHAR},
+	      </if>
+	      
+	      <if test="businessLineId != null" >
+	        BUSINESS_LINE_ID = #{businessLineId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serviceOperationDepId != null" >
+	        SERVICE_OPERATION_DEP_ID = #{serviceOperationDepId,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where order_num = #{orderNum,jdbcType=VARCHAR}
+    </update>
+    
+	<update id="deleteOrderProduct" parameterType="com.caissa.ordercenter.export.response.OrderItem" >
+	    update  ORDER_PRODUCT set del_flag = 0	where order_num = #{orderNum,jdbcType=VARCHAR}
+    </update>
+
+	<insert id="insertOrderProduct" parameterType="com.caissa.ordercenter.export.response.OrderProduct" >
+		insert into ORDER_PRODUCT (db_id, order_db_id, order_num, product_name, product_id, key_date, product_quantity,del_flag) values 
+		(#{dbId,jdbcType=VARCHAR},#{orderDbId,jdbcType=VARCHAR},#{orderNum,jdbcType=VARCHAR},#{productName,jdbcType=VARCHAR},#{productId,jdbcType=VARCHAR},#{keyDate,jdbcType=VARCHAR},#{productQuantity,jdbcType=VARCHAR},1) 
+	</insert>
+	
+	<select id="selectOrderList" resultMap="OrderItemMap" parameterType="com.caissa.ordercenter.export.request.OrderRequest" >
+	    select <include refid="Base_Column_List"/> from ORDERS  o
+	    left join ORDER_PRODUCT p on (o.db_id=p.order_db_id and del_flag = 1)
+	    where 1=1
+	    <if test="db_id != null and db_id !=''" >
+	        and o.db_id = #{db_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="order_num != null and order_num !=''" >
+	        and o.order_num like CONCAT('%', CONCAT(#{order_num,jdbcType=VARCHAR}, '%'))
+	    </if>
+	    <if test="business_line_id != null and business_line_id != ''" >
+	        and o.business_line_id = #{business_line_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="business_line != null and business_line != ''" >
+	        and o.business_line like CONCAT('%', CONCAT(#{business_line,jdbcType=VARCHAR}, '%'))
+	    </if>
+	    <if test="product_name != null and product_name != ''" >
+	        and o.product_name like CONCAT('%', CONCAT(#{product_name,jdbcType=VARCHAR}, '%'))
+	    </if>
+	    <if test="channel_id != null and channel_id != ''" >
+	        and o.channel_id = #{channel_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="channel_attribute != null and channel_attribute != ''" >
+	        and o.channel_attribute = #{channel_attribute,jdbcType=VARCHAR}
+	    </if>
+	    <if test="channel_type != null and channel_type != ''" >
+	        and o.channel_type = #{channel_type,jdbcType=VARCHAR}
+	    </if>
+	    <if test="operator_third_party_id != null and operator_third_party_id != ''" >
+	        and o.operator_third_party_id = #{operator_third_party_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="activity_id != null and activity_id != ''" >
+	        and o.activity_id = #{activity_id,jdbcType=VARCHAR}
+	    </if>
+	    
+	    <if test="enterprise_customer_id != null and enterprise_customer_id != ''" >
+	        and o.enterprise_customer_id = #{enterprise_customer_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="customer_id != null and customer_id != ''" >
+	        and o.customer_id = #{customer_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="customer_name != null and customer_name != ''" >
+	        and o.customer_name like CONCAT('%', CONCAT(#{customer_name,jdbcType=VARCHAR}, '%'))
+	    </if>
+	    <if test="customer_mobile != null and customer_mobile != ''" >
+	        and o.customer_mobile = #{customer_mobile,jdbcType=VARCHAR}
+	    </if>
+	    <if test="developing_person_id != null and developing_person_id != ''" >
+	        and o.developing_person_id = #{developing_person_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="sales_department_id != null and sales_department_id != ''" >
+	        and o.sales_department_id = #{sales_department_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="sales_department != null and sales_department != ''" >
+	        and o.sales_department like CONCAT('%', CONCAT(#{sales_department,jdbcType=VARCHAR}, '%'))
+	    </if>
+	    <if test="sales_person != null and sales_person != ''" >
+	        and o.sales_person like CONCAT('%', CONCAT(#{sales_person,jdbcType=VARCHAR}, '%'))
+	    </if>
+	    <if test="sales_person_id != null and sales_person_id != ''" >
+	        and o.sales_person_id = #{sales_person_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="service_operator_id != null and service_operator_id != ''" >
+	        and o.service_operator_id = #{service_operator_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="order_common_status != null and order_common_status != ''" >
+	        and o.order_common_status = #{order_common_status,jdbcType=VARCHAR}
+	    </if>
+	    <if test="ids != null and ids.size() > 0 ">
+	          and o.order_common_status in 
+	          <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+		 	      #{item}  
+		      </foreach>
+		</if>
+	    <if test="order_current_status != null and order_current_status != ''" >
+	        and o.order_current_status = #{order_current_status,jdbcType=VARCHAR}
+	    </if>
+	    <if test="current_payment_status != null and current_payment_status != ''" >
+	        and o.current_payment_status = #{current_payment_status,jdbcType=VARCHAR}
+	    </if>
+	    <if test="begin_time != null and begin_time != '' and end_time != null and end_time != ''" >
+	    	<![CDATA[
+	        and o.create_time >= TO_DATE(#{begin_time,jdbcType=VARCHAR},'yyyy-mm-dd')  and o.create_time <= TO_DATE(#{end_time,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+	        ]]>
+	    </if>
+	     order by o.create_time desc
+	</select>
+	
+	<select id="selectOrderByIds" resultMap="OrderItemMap" parameterType="com.caissa.ordercenter.export.request.OrderRequest" >
+	    select <include refid="Base_Column_List"/> from ORDERS  o
+	    left join ORDER_PRODUCT p on (o.db_id=p.order_db_id and p.del_flag = 1)
+	    where 1=1
+	    <if test="db_id != null and db_id !='' " >
+	        and o.db_id = #{db_id,jdbcType=VARCHAR}
+	    </if>
+	    <if test="order_num != null and order_num != ''" >
+	        and o.order_num = #{order_num,jdbcType=VARCHAR}
+	    </if>
+	    <if test="ids != null and ids.size() > 0 ">
+	          and o.order_num in 
+	          <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+		 	      #{item}  
+		      </foreach>
+		</if>
+	</select>
+</mapper>

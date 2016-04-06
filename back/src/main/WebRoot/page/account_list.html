@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" charset="UTF-8"/> 
+    
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/default/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/icon.css"/>
+	<script type="text/javascript" src="../jquery-easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+	
+    <link href="../css/common/common-base.css" rel="stylesheet" type="text/css" />
+    <link href="../css/common/common-layout.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../js/common/common.js"></script>
+    
+</head>
+<body>
+	<div class="caissa-main">
+    	<!--面包屑start-->
+        <div class="caissa-nav caissa-marb5"><span>位置：</span><span><a href=""></a></span><span> &gt; </span><span><a href="">信息查询</a></span></div>
+        <!--面包屑end--> 
+        <div class="hr_10"></div>
+        <div class="caissa-content">
+            <h1 class="caissa-title01"><p><span>查询条件</span></p></h1>
+            
+            <form id="searchform">
+            <table class="caissa-tb-t-in-t-in">
+				 <tr>
+                    <td class="caissa-td85">名称</td>
+                    <td>
+                        <input type="text" class="easyui-textbox" id="title" name="title" autocomplete="off"/>
+                    </td>
+                    <td class="caissa-td85">金额</td>
+                    <td>
+                        <input type="text" class="easyui-textbox" name="money" id="money" data-options="required:false,validType:['length[0,100]','number']" autocomplete="off"/>
+                    </td>
+                    <td class="caissa-td85"><span>类别</span></td>
+                    <td>
+                    	<input id="kindid" class="easyui-combobox" name="kindid" data-options="valueField:'id',textField:'title',url:'./kind/list.do?parentid=-1'" />
+                    </td>
+                </tr>
+				<tr>
+                    <td class="caissa-td85">开始时间</td>
+                    <td>
+                        <input type="text" class="easyui-datebox" name="begin" id="begin" />
+                    </td>
+                    <td class="caissa-td85">结束时间</td>
+                    <td>
+                        <input type="text" class="easyui-datebox" name="end" id="end" />
+                    </td>
+                    <td colspan="2" class="caissa-alignce">
+	                    <input type="button" class="caissa-btn01" id="listsearch" value="查询操作" />
+	                    <input type="reset" class="caissa-btn02" value="清空操作" />
+                    </td>
+                </tr>
+            </table>
+			</form>
+        </div>
+		<div class="caissa-content">
+            <h1 class="caissa-title01"><p><span>查询结果</span></p></h1>
+            <div class="caissa-toolbar">
+            	<a class="caissa-btn03" href="javascript:void(0)" id="add">新增</a>
+                <a class="caissa-btn03" href="javascript:void(0)" id="add">导入</a>
+                <a class="caissa-btn03" href="javascript:void(0)" id="add">导出</a>
+				<a class="caissa-btn03" href="javascript:activated(1)" id="activated">启用</a>
+				<a class="caissa-btn03" href="javascript:activated(0)" id="forbidden">禁用</a>
+				<a class="caissa-btn03" href="javascript:activated(2)" id="delete">删除</a>
+            </div>
+            <table class="table_ty" id="tablelist" ></table>
+        </div>
+
+   </div>
+<div id="dialog"></div>
+
+<script type="text/javascript">
+    $(function(){
+    	$("#tablelist").datagrid({
+        	url: "./account/list.do",
+        	method: "get",
+        	//queryParams: $("#searchform").serializeObject() ,
+        	singleSelect : false,
+			collapsible : true,
+			autoRowHeight : 35,
+			fitColumns : false,
+			pagination : true,
+			rownumbers : true,
+			pageSize:10,
+        	columns:[[
+        	          //{field:'ck',checkbox:true},
+        	          {field:'uid',title:'UUID', width:120},
+        	          {field:'title', title:'名称', align:'center',
+        	        	  formatter:function(value, row, index){
+        	        		  return "<a href=\"javascript:info('"+ row.id +"')\">"+ value +"</a>" ;
+        	        	  }
+        	          },
+        	          {field:'money',title:'金额'},
+        	          {field:'kindtitle',title:'类别'},
+          	          {field:'datetime', title:'日期'},
+        	          {field:'userId', title:'用户ID'},
+        	          {field:'username', title:'用户名'},
+        	          {field:'dbId', title:'操作', align:'left', 
+        	        	  formatter:function(value, row, index){
+        	        		  return "<a href=\"javascript:update()\">更新</a>" ;
+        	        	  }
+        	          }
+        	        ]]
+       });
+    	//添加
+		$('#add').live('click',function(){
+    		var url = "./page/account_update.html" ;
+    		alert(url) ;
+    		dialogOpen(url,"信息添加") ;
+    		//tabsAdd(url,"信息添加") ;
+    		//window.location.href="account_update.html" ;
+		});
+    	//查询
+    	$("#listsearch").on("click",function() {
+    		$('#tablelist').datagrid('load',$('#searchform').serializeObject());
+    	})
+    })
+    
+    
+    //详情
+    function info(dbId){
+		tabsJump("page/account_info.html?id="+dbId) ;
+    	//window.location.href="account_info.html?id="+dbId ;
+    }
+    //更新
+    function update(){
+    	var row = $("#tablelist").datagrid("getSelected");
+    	var url = "page/account_update.html?id="+dbId ;
+    	dialogOpen(url,"信息添加") ;
+		//tabsJump(url) ;
+    	//window.location.href="account_update.html?id="+row.id ;
+    }
+    //删除
+    function del(dbId){
+    	$.messager.confirm('确认删除', '您确认要删除吗？', function(r){
+    		if (r){
+	    	$.get('del.do',{"dbId":dbId},function(result){
+	    		var message = "删除失败，请稍后再试." ;
+	            if (result == 1){
+	                $('#tablelist').datagrid('reload');    // reload the user data
+	                message = "删除成功。" ;
+	            }
+                $.messager.show({
+                	title:'操作提示',
+                	msg:message,
+                	timeout:3000,
+                	showType:'show'
+                });
+	        });
+    		}
+    	});
+    }
+</script>
+</body>
+</html>

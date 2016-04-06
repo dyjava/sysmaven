@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>17aba</groupId>
+    <artifactId>sysmaven</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>sysmaven-applet</artifactId>
+  <name>applet</name>
+  <description>applet实现层</description>
+  
+  <dependencies>
+  	<dependency>
+	    <groupId>17aba</groupId>
+	    <artifactId>sysmaven-service</artifactId>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>jfree</groupId>
+  		<artifactId>jfreechart</artifactId>
+  	</dependency>
+  	
+  </dependencies>
+</project>
