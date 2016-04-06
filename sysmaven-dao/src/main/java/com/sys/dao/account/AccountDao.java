@@ -2,12 +2,14 @@ package com.sys.dao.account;
 
 import java.util.List;
 
+import com.sys.dao.mybatis.MyBatisRepository;
 import com.sys.domain.account.Account;
 import com.sys.domain.account.AccountTable;
 
 /** 
  * by dyong 2010-6-16
  */
+@MyBatisRepository
 public interface AccountDao {
 
 	public int insertAccount(Account account) ;	//insert

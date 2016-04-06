@@ -2,12 +2,14 @@ package com.sys.dao.account;
 
 import java.util.List;
 
+import com.sys.dao.mybatis.MyBatisRepository;
 import com.sys.domain.account.Diary;
 import com.sys.domain.user.User;
 
 /** 
  * by dyong 2010-6-16
  */
+@MyBatisRepository
 public interface DiaryDao {
 
 	public int insertDiary(Diary diary) ;	//insert

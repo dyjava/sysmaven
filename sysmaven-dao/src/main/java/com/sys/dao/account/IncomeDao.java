@@ -2,11 +2,13 @@ package com.sys.dao.account;
 
 import java.util.List;
 
+import com.sys.dao.mybatis.MyBatisRepository;
 import com.sys.domain.account.Income;
 
 /** 
  * by dyong 2010-9-29
  */
+@MyBatisRepository
 public interface IncomeDao {
 
 	public int insertIncome(Income income) ;

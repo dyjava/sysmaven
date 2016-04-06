@@ -8,14 +8,14 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.caissa.ordercenter.domain.po" />
+        <property name="typeAliasesPackage" value="com.sys.domain.account" />
         <property name="mapperLocations" value="classpath:/mybatis/mapper/*Mapper.xml" />
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="com.caissa.ordercenter.dao" />
-        <property name="annotationClass" value="com.caissa.ordercenter.dao.mybatis.MyBatisRepository"/>
+        <property name="basePackage" value="com.sys.dao.account" />
+        <property name="annotationClass" value="com.sys.dao.mybatis.MyBatisRepository"/>
     </bean>
     
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
