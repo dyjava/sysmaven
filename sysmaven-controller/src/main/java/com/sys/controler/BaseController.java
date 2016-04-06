@@ -10,6 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.sys.common.JsonUtils;
 
 public class BaseController {
+	protected long start ;
+
+	protected StringBuffer getLogs(HttpServletRequest request){
+		StringBuffer buf = new StringBuffer()
+			.append("|").append("uuid")
+			.append("|").append(System.currentTimeMillis()-start)
+			.append("|").append(request.getRemoteHost())
+			.append("|").append(this.getClass().getSimpleName()+"."+Thread.currentThread().getStackTrace()[2].getMethodName())
+			.append("|").append(request.getQueryString()).append("|") ;
+		return buf ;
+	}
 	// 输出内容
 	protected void printOut(Object obj, HttpServletResponse response) {
 		String out = "";
