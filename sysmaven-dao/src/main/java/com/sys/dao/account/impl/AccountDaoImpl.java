@@ -16,6 +16,7 @@ import com.sys.domain.account.AccountTable;
 public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 	
 	private String table = "account" ;
+	@Override
 	public List<Account> findAccountList(String begin, String end,Account account) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -59,6 +60,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 		return list ;
 	}
 
+	@Override
 	public int insertAccount(Account acc) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -88,6 +90,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 		return result ;
 	}
 
+	@Override
 	public int updateAccount(Account acc) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -135,6 +138,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 		return result ;
 	}
 
+	@Override
 	public Account findAccountById(int id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -150,6 +154,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 		return account ;
 	}
 
+	@Override
 	public List<AccountTable> findAccountTableList(String begin, String end,
 			Account account, String type) {
 		long start = System.currentTimeMillis() ;

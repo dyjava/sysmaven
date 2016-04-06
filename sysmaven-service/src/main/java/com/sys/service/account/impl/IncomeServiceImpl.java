@@ -24,22 +24,26 @@ public class IncomeServiceImpl implements IncomeService {
 		this.incomeDao = incomeDao;
 	}
 
+	@Override
 	public Income findIncomeById(int id) {
 		// TODO Auto-generated method stub
 		return incomeDao.findIncomeById(id);
 	}
 
+	@Override
 	public List<Income> findIncomeList(String begin, String end, Income income) {
 		// TODO Auto-generated method stub
 		return incomeDao.findIncomeList(begin, end, income);
 	}
 
+	@Override
 	public int insertIncome(Income income) {
 		// TODO Auto-generated method stub
 		income.setUid(UUID.randomUUID().toString()) ;
 		return incomeDao.insertIncome(income);
 	}
 
+	@Override
 	public int updateIncome(Income income) {
 		return incomeDao.updateIncome(income);
 	}

@@ -14,6 +14,7 @@ import com.sys.domain.account.Kind;
 public class KindDaoImpl extends AbstractDBDao implements KindDao {
 	private String table = "kind" ;
 	
+	@Override
 	public List<Kind> findAllKindList() {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -30,6 +31,7 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 		return list;
 	}
 
+	@Override
 	public int insertKind(Kind kind) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -53,6 +55,7 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 		return result ;
 	}
 
+	@Override
 	public int updateKind(Kind kind) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -87,6 +90,7 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 		return result ;
 	}
 
+	@Override
 	public Kind findKindById(int id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -103,6 +107,7 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 		return kind ;
 	}
 
+	@Override
 	public List<Kind> findKindListByParentId(int parentId) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -125,21 +130,4 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 		}
 	}
 
-	public int deleteKindById(int id) {
-		long start = System.currentTimeMillis() ;
-		StringBuffer buf = new StringBuffer() ;
-		buf.append(this.getClass().getName()).append("|").append("deleteKindById") ;
-		
-		String sql = "delete from kind where id = ? ";
-		
-		int result = this.update(sql, new Object[] {id}) ;
-		
-		buf.append("|").append(sql)
-		.append("|").append(id)
-		.append("|").append(result)
-		.append("|").append(System.currentTimeMillis() - start) ;
-		Logs.info(buf) ;
-		
-		return result ;
-	}
 }

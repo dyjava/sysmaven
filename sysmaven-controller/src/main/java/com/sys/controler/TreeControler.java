@@ -16,9 +16,10 @@ import com.sys.common.XmlUtils;
 import com.sys.domain.TreeNode;
 
 @Controller
+@RequestMapping(value = "/tree")
 public class TreeControler extends BaseController{
 
-	@RequestMapping("tree_data")
+	@RequestMapping("list")
 	public void contact_list(HttpServletRequest request, HttpServletResponse response, @ModelAttribute Object contact) {
 		TreeNode node = getDate() ;
 		List<TreeNode> list = new ArrayList<TreeNode>() ;

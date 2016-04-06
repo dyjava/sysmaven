@@ -14,6 +14,8 @@ import com.sys.domain.account.Income;
  */
 public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 	private String table = "income" ;
+	
+	@Override
 	public int insertIncome(Income in) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -33,6 +35,7 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 		return result ;
 	}
 
+	@Override
 	public int updateIncome(Income income) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -56,20 +59,7 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 		return result ;
 	}
 
-	public void deleteIncome(int id) {
-		long start = System.currentTimeMillis() ;
-		StringBuffer buf = new StringBuffer() ;
-		buf.append(this.getClass().getName()).append("|").append("deleteIncome") ;
-		
-		int result = super.deleteById(table, id) ;
-
-		buf.append("|").append(id)
-		.append("|").append("")
-		.append("|").append(result)
-		.append("|").append(System.currentTimeMillis() - start) ;
-		Logs.info(buf) ;
-	}
-
+	@Override
 	public Income findIncomeById(int id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -85,6 +75,7 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 		return result ;
 	}
 
+	@Override
 	public List<Income> findIncomeList(String begin, String end, Income income) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -129,5 +120,4 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 	
 	}
 	
-
 }

@@ -24,5 +24,5 @@ public interface KindService {
 	
 	public Kind findKindById(int id) ;
 	
-	public void deleteKindById(int id) ;
+//	public void deleteKindById(int id) ;
 }

@@ -14,6 +14,8 @@ import com.sys.domain.user.User;
  */
 public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 	private String table = "diary" ;
+	
+	@Override
 	public List<Diary> findDiaryListByUser(String begin, String end, Diary diary, User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -47,6 +49,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 		return list;
 	}
 
+	@Override
 	public int insertDiary(Diary diary) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -73,6 +76,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 		return result ;
 	}
 
+	@Override
 	public int updateDiary(Diary diary) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -104,6 +108,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 		return result ;
 	}
 
+	@Override
 	public Diary findDiaryById(int id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;

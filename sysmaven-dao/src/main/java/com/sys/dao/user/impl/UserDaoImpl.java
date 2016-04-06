@@ -14,6 +14,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	/**
 	 * 用户删除
 	 */
+	@Override
 	public int deleteUserByID(int userid) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -32,6 +33,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	/**
 	 * 用户添加
 	 */
+	@Override
 	public int insertUser(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -51,6 +53,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	/**
 	 * 按用户ID查询用户信息
 	 */
+	@Override
 	public User selectUserByID(int id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -69,6 +72,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	/**
 	 * 按条件查询用户列表
 	 */
+	@Override
 	public List<User> selectUsersByUser(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -107,6 +111,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	/**
 	 * 用户信息更新
 	 */
+	@Override
 	public int updateUser(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
@@ -148,6 +153,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	/**
 	 * 修改密码
 	 */
+	@Override
 	public int updateUserPwd(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;

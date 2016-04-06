@@ -28,18 +28,21 @@ public class AccountServiceImpl implements AccountService {
 		this.accountDao = accountDao;
 	}
 
+	@Override
 	public Account findAccountById(int id) {
 		// TODO Auto-generated method stub
 		Account acc = accountDao.findAccountById(id);
 		acc.setMoney(this.round(acc.getMoney(), 2, 1)) ;
 		return acc ;
 	}
-
+	
+	@Override
 	public List<Account> findAccountList(String begin, String end,Account account) {
 		// TODO Auto-generated method stub
 		return accountDao.findAccountList(begin, end, account);
 	}
 
+	@Override
 	public int insertAccount(Account account) {
 		// TODO Auto-generated method stub
 		account.setUid(UUID.randomUUID().toString()) ;
@@ -48,15 +51,16 @@ public class AccountServiceImpl implements AccountService {
 		return accountDao.insertAccount(account);
 	}
 
+	@Override
 	public int updateAccount(Account account) {
 		return accountDao.updateAccount(account);
 	}
 
+	@Override
 	public List<AccountTable> findAccountTableList(String begin, String end,
 			Account account,String type) {
 		return accountDao.findAccountTableList(begin, end, account,type);
 	}
-
 
     private double round(double value, int scale,
              int roundingMode) {  

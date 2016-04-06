@@ -17,11 +17,12 @@ import com.sys.service.account.AccountService;
 
 
 @Controller
+@RequestMapping(value = "/account")
 public class AccountControler extends BaseController{
 	@Resource(name = "accountService")
 	private AccountService accountService;
 	
-	@RequestMapping("account/list")
+	@RequestMapping("/list")
 	public void list(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute Account account, String begin, String end) {
 		if(begin==null){
@@ -37,14 +38,14 @@ public class AccountControler extends BaseController{
 		this.printOut(list, response);
 	}
 
-	@RequestMapping("account/info")
+	@RequestMapping("/info")
 	public void info(HttpServletRequest request, HttpServletResponse response,@ModelAttribute Account account) {
 		
 		Account info = accountService.findAccountById(account.getId()) ;
 		this.printOut(info, response);
 	}
 	
-	@RequestMapping("account/update")
+	@RequestMapping("/update")
 	public void update(HttpServletRequest request, HttpServletResponse response,@ModelAttribute Account account) {
 		int res = 0;
 		if(account.getId()>0){
@@ -54,6 +55,4 @@ public class AccountControler extends BaseController{
 		}
 		this.printOut(res, response);
 	}
-	
-	
 }

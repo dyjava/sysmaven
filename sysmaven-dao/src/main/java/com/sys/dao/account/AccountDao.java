@@ -20,5 +20,13 @@ public interface AccountDao {
 	
 	public List<Account> findAccountList(String begin,String end,Account account) ; 	//find object list by parames
 	
+	/**
+	 * 按条件查询统计结果
+	 * @param begin 开始时间
+	 * @param end 截止时间
+	 * @param account 查询条件
+	 * @param type 统计类型
+	 * @return
+	 */
 	public List<AccountTable> findAccountTableList(String begin,String end,Account account,String type) ;	// find tables by count
 }

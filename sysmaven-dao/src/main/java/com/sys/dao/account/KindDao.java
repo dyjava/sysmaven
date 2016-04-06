@@ -17,8 +17,13 @@ public interface KindDao {
 	
 	public List<Kind> findAllKindList() ;
 	
+	/**
+	 * 按上级ID查询
+	 * @param parentId
+	 * @return
+	 */
 	public List<Kind> findKindListByParentId(int parentId) ;
 	
-	public int deleteKindById(int id) ;
+//	public int deleteKindById(int id) ;
 	
 }

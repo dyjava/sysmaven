@@ -114,21 +114,21 @@ public class ListKindPanel extends CommonPanel{
     	this.add(new UpdateKindPanel(id));
     	this.validate();
     }
-    /**
-     * 删除选中行
-     * @param uid
-     */
-    private void deleteKind(int id){
-		int rel=JOptionPane .showConfirmDialog(this,"你确定删除"+id+"吗？","删除",JOptionPane.YES_NO_OPTION ) ;
-        if(rel==JOptionPane.YES_OPTION ){
-        	ConstService.kindService.deleteKindById(id) ;
-        }
-        
-        this.removeAll();
-    	this.repaint() ;
-    	this.add(new ListKindPanel());
-    	this.validate();
-    }
+//    /**
+//     * 删除选中行
+//     * @param uid
+//     */
+//    private void deleteKind(int id){
+//		int rel=JOptionPane .showConfirmDialog(this,"你确定删除"+id+"吗？","删除",JOptionPane.YES_NO_OPTION ) ;
+//        if(rel==JOptionPane.YES_OPTION ){
+//        	ConstService.kindService.deleteKindById(id) ;
+//        }
+//        
+//        this.removeAll();
+//    	this.repaint() ;
+//    	this.add(new ListKindPanel());
+//    	this.validate();
+//    }
     class TableMouseListener extends MouseAdapter  {
     	public void mouseClicked(MouseEvent e){
     		int clickTimes = e.getClickCount();
@@ -140,7 +140,7 @@ public class ListKindPanel extends CommonPanel{
 //    			System.out.println("Doublc Clicked!"+row+"/"+uid);
     			
     			if(col==4){
-    				deleteKind(id) ;
+//    				deleteKind(id) ;
     			} else {
     				updateKind(id) ;
     			}

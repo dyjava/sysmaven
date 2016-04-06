@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 查询所有用户信息
 	 */
+	@Override
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
 		return dao.selectUsersByUser(new User()) ;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 查询单条用户信息
 	 */
+	@Override
 	public User getUserById(int id) {
 		// TODO Auto-generated method stub
 		return dao.selectUserByID(id) ;
@@ -38,6 +40,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 删除一条用户信息
 	 */
+	@Override
 	public boolean userDelete(int id) {
 		// TODO Auto-generated method stub
 		return dao.deleteUserByID(id)==0 ;
@@ -46,6 +49,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 用户注册
 	 */
+	@Override
 	public int userRegister(User user) {
 		// TODO Auto-generated method stub
 		if(user.getUsername()==null || user.getUsername().trim().length()==0){
@@ -57,6 +61,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 用户信息修改
 	 */
+	@Override
 	public int userUpdate(User user) {
 		// TODO Auto-generated method stub
 		return dao.updateUser(user) ;
@@ -65,6 +70,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 按条件查询
 	 */
+	@Override
 	public List<User> getUsersByUser(User user) {
 		// TODO Auto-generated method stub
 		return dao.selectUsersByUser(user);
@@ -73,6 +79,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 修改密码
 	 */
+	@Override
 	public int userPasswordUpdate(User user) {
 		// TODO Auto-generated method stub
 		user.setPassword(user.getPassword()) ;
@@ -81,6 +88,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 用户登录
 	 */
+	@Override
 	public User userLogin(User user) {
 		// TODO Auto-generated method stub
 		List<User> list = this.getUsersByUser(user) ;

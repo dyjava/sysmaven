@@ -25,21 +25,25 @@ public class DiaryServiceImpl implements DiaryService {
 	public void setDiaryDao(DiaryDao diaryDao) {
 		this.diaryDao = diaryDao;
 	}
-
+	
+	@Override
 	public Diary findDiaryById(int id) {
 		return diaryDao.findDiaryById(id);
 	}
 
+	@Override
 	public List<Diary> findDiaryListByUser(User user) {
 		String end = "" ;
 		String begin = "" ;
 		return this.findDiaryListByUser(begin, end, new Diary(), user);
 	}
 	
+	@Override
 	public List<Diary> findDiaryListByUser(String begin, String end, Diary diary,User user) {
 		return diaryDao.findDiaryListByUser(begin,end,diary,user);
 	}
 
+	@Override
 	public int insertDiary(Diary diary,User user) {
 		diary.setUid(UUID.randomUUID().toString()) ;
 		diary.setUserId(user.getUid()) ;
@@ -47,6 +51,7 @@ public class DiaryServiceImpl implements DiaryService {
 		return diaryDao.insertDiary(diary);
 	}
 
+	@Override
 	public int updateDiary(Diary diary,User user) {
 		diary.setUserId(user.getUid()) ;
 		diary.setUsername(user.getUsername()) ;

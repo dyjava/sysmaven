@@ -13,10 +13,17 @@ public interface IncomeDao {
 	
 	public int updateIncome(Income income) ;
 	
-	public void deleteIncome(int id) ;
+//	public void deleteIncome(int id) ;
 
 	public Income findIncomeById(int id) ;
 	
+	/**
+	 * 按条件查询列表
+	 * @param begin
+	 * @param end
+	 * @param income
+	 * @return
+	 */
 	public List<Income> findIncomeList(String begin,String end,Income income) ;
 	
 }

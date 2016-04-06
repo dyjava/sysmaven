@@ -10,6 +10,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.sys.common.Logs;
 
+/**
+ * jdbc公共方法
+ * @author diyong
+ *
+ */
 public abstract class AbstractDBDao {
 
 	private JdbcTemplate jdbc ;
