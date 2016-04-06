@@ -32,7 +32,7 @@ public class ConstService {
 		
 //		ApplicationContext context = new ClassPathXmlApplicationContext("spring-*");
 		ApplicationContext context = new ClassPathXmlApplicationContext(
-				new String[]{"spring-dao.xml","spring-service.xml"});
+				new String[]{"spring-config.xml"});
 		
 		userService = (UserService)context.getBean("userService");
 		accService = (AccountService)context.getBean("accountService");
