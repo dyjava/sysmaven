@@ -3,6 +3,11 @@
 	<name>sysmaven-web</name>
 	<comment></comment>
 	<projects>
+		<project>sysmaven-service</project>
+		<project>sysmaven-domain</project>
+		<project>sysmaven-common</project>
+		<project>sysmaven-controller</project>
+		<project>sysmaven-dao</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

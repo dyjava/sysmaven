@@ -3,6 +3,21 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <dependent-module archiveName="sysmaven-service.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sysmaven-service/sysmaven-service">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sysmaven-domain.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sysmaven-domain/sysmaven-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sysmaven-common.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sysmaven-common/sysmaven-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sysmaven-controller.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sysmaven-controller/sysmaven-controller">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sysmaven-dao.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sysmaven-dao/sysmaven-dao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/sysmaven-web/target/classes"/>
         <property name="context-root" value="sys"/>
     </wb-module>
