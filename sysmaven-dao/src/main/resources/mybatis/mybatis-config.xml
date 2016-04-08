@@ -7,11 +7,6 @@
     <properties>
         <property name="dialect" value="ORACLE" />
     </properties>
-    <!--<plugins>-->
-        <!--<plugin interceptor="com.caissa.ordercenter.dao.mybatis.interceptor.PageInterceptor">-->
-            <!--<property name="databaseType" value="Oracle"/>-->
-        <!--</plugin>-->
-    <!--</plugins>-->
     <plugins>
         <!-- com.github.pagehelper为PageHelper类所在包名 -->
         <plugin interceptor="com.github.pagehelper.PageHelper">
