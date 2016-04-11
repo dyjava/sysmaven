@@ -2,6 +2,7 @@ package com.sys.dao.user;
 
 import java.util.List;
 
+import com.sys.dao.mybatis.MyBatisRepository;
 import com.sys.domain.user.User;
 
 /**
@@ -9,6 +10,7 @@ import com.sys.domain.user.User;
  * @author Administrator
  *
  */
+@MyBatisRepository
 public interface UserDao {
 
 	public int insertUser(User user) ;	//新增用户

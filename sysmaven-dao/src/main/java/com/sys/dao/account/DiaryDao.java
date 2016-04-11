@@ -9,7 +9,7 @@ import com.sys.domain.user.User;
 /** 
  * by dyong 2010-6-16
  */
-@MyBatisRepository
+//@MyBatisRepository
 public interface DiaryDao {
 
 	public int insertDiary(Diary diary) ;	//insert

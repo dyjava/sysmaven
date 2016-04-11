@@ -8,7 +8,7 @@ import com.sys.domain.account.Kind;
 /** 
  * by dyong 2010-6-16
  */
-@MyBatisRepository
+//@MyBatisRepository
 public interface KindDao {
 
 	public int insertKind(Kind kind) ;

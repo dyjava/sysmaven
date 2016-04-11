@@ -9,7 +9,7 @@ import com.sys.domain.account.AccountTable;
 /** 
  * by dyong 2010-6-16
  */
-@MyBatisRepository
+//@MyBatisRepository
 public interface AccountDao {
 
 	public int insertAccount(Account account) ;	//insert

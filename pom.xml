@@ -164,6 +164,18 @@
 			<version>5.1.18</version>
 		</dependency>
 		
+		<dependency>
+		  <groupId>com.alibaba.druid</groupId>
+		  <artifactId>druid-wrapper</artifactId>
+		  <version>0.2.9</version>
+		</dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        
 	  	<dependency>
 		    <groupId>org.freemarker</groupId>
 		    <artifactId>freemarker</artifactId>

@@ -8,7 +8,7 @@ import com.sys.domain.account.Income;
 /** 
  * by dyong 2010-9-29
  */
-@MyBatisRepository
+//@MyBatisRepository
 public interface IncomeDao {
 
 	public int insertIncome(Income income) ;
