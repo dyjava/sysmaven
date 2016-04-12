@@ -83,7 +83,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 	public int updateById(Diary diary) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
-		buf.append(this.getClass().getName()).append("|").append("updateDiary") ;
+		buf.append(this.getClass().getName()).append("|").append("updateById") ;
 		
 		StringBuffer sql = new StringBuffer("update diary set ") ;
 		ArrayList<Object> params = new ArrayList<Object>() ;

@@ -21,7 +21,7 @@
 	<insert id="insert" parameterType="com.sys.domain.user.User" >
 		insert into user 
         <trim prefix="(" suffix=")" suffixOverrides="," >
-        	(UID,name,PASSWORD,
+        	UID,name,PASSWORD,
         	<if test="email != null">
                 email,
             </if>

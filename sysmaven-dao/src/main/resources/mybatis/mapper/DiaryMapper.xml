@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sys.dao.diary.DiaryDao">
+
+    <resultMap id="DiaryMap" type="com.sys.domain.account.Diary">
+        <result column="id" property="id" jdbcType="VARCHAR" />
+        <result column="uid" property="uid" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="datetime" property="datetime" jdbcType="VARCHAR" />
+		<result column="userid" property="userId" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+    </resultMap>
+    
+	<sql id="Base_Column_List">
+	id,uid,title,content,datetime,userid,username
+    </sql>
+    
+	<insert id="insert" parameterType="com.sys.domain.account.Diary" >
+		insert into diary 
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+        	uid,
+        	<if test="title != null and title != ''">
+                title,
+            </if>
+        	<if test="content != null and content !='' ">
+                content,
+            </if>
+        	<if test="datetime != null and datetime != ''">
+                datetime,
+            </if>
+        	<if test="userid != null and userid != ''">
+                userid,
+            </if>
+        	<if test="username != null and username != ''">
+                username,
+            </if>
+		</trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+        	#{uid,jdbcType=VARCHAR},
+        	<if test="title != null and title != ''">
+                #{title,jdbcType=VARCHAR},
+            </if>
+        	<if test="content != null and content != ''">
+                #{content,jdbcType=VARCHAR},
+            </if>
+        	<if test="datetime != null and datetime != ''">
+                #{datetime,jdbcType=VARCHAR},
+            </if>
+        	<if test="userid != null and userid != ''">
+                #{userid,jdbcType=VARCHAR},
+            </if>
+        	<if test="username != null and username != ''">
+                #{username,jdbcType=VARCHAR},
+            </if>
+		</trim>
+	</insert>
+	
+	<update id="updateById" parameterType="com.sys.domain.account.Diary" >
+	    update diary
+	    <set >
+	      <if test="title != null and title != ''" >
+	        title = #{title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="content != null and content != ''" >
+	        content = #{content,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where id = #{id,jdbcType=VARCHAR}
+	    
+    </update>
+    
+	<select id="selectById" resultMap="DiaryMap" parameterType="int" >
+		select <include refid="Base_Column_List"/> from diary where id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="deleteById" parameterType="int" >
+	    delete from diary where id = #{id,jdbcType=VARCHAR}
+    </update>
+	
+	<select id="select" resultMap="DiaryMap" parameterType="com.sys.domain.account.Diary" >
+	    select <include refid="Base_Column_List"/> from diary
+	    where 1=1
+	    <if test="userid != null and userid !=''" >
+	        and userid = #{userid,jdbcType=VARCHAR} 
+	    </if>
+	    <if test="title != null and title != ''" >
+	        and title like CONCAT('%', CONCAT(#{title,jdbcType=VARCHAR}, '%'))
+	    </if>
+	     order by datetime desc
+	</select>
+	
+</mapper>
