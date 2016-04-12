@@ -16,6 +16,7 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.sys.dao.account" />
         <property name="annotationClass" value="com.sys.dao.mybatis.MyBatisRepository"/>
+        <!-- <property name="markerInterface" value="com.caissa.sourcemanage.dao.BaseDao"/> -->
     </bean>
     
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
