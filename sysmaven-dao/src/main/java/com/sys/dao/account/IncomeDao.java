@@ -1,7 +1,9 @@
 package com.sys.dao.account;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.sys.dao.BaseDao;
 import com.sys.dao.mybatis.MyBatisRepository;
 import com.sys.domain.account.Income;
 
@@ -9,15 +11,7 @@ import com.sys.domain.account.Income;
  * by dyong 2010-9-29
  */
 //@MyBatisRepository
-public interface IncomeDao {
-
-	public int insertIncome(Income income) ;
-	
-	public int updateIncome(Income income) ;
-	
-//	public void deleteIncome(int id) ;
-
-	public Income findIncomeById(int id) ;
+public interface IncomeDao extends BaseDao<Income, Serializable>{
 	
 	/**
 	 * 按条件查询列表

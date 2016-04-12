@@ -18,7 +18,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	 * 用户删除
 	 */
 	@Override
-	public int deleteUserByID(int userid) {
+	public int deleteById(Object userid) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		
@@ -37,7 +37,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	 * 用户添加
 	 */
 	@Override
-	public int insertUser(User user) {
+	public int insert(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		
@@ -57,7 +57,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	 * 按用户ID查询用户信息
 	 */
 	@Override
-	public User selectUserByID(int id) {
+	public User selectById(Object id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		
@@ -76,7 +76,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	 * 按条件查询用户列表
 	 */
 	@Override
-	public List<User> selectUsersByUser(User user) {
+	public List<User> select(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		
@@ -115,7 +115,7 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 	 * 用户信息更新
 	 */
 	@Override
-	public int updateUser(User user) {
+	public int updateById(User user) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		
@@ -153,28 +153,5 @@ public class UserDaoImpl extends AbstractDBDao implements UserDao {
 		return result ;
 	}
 
-	/**
-	 * 修改密码
-	 */
-	@Override
-	public int updateUserPwd(User user) {
-		long start = System.currentTimeMillis() ;
-		StringBuffer buf = new StringBuffer() ;
-		
-		StringBuffer sqlStr = new StringBuffer("update user set ") ;
-		ArrayList<Object> params = new ArrayList<Object>() ;
-		sqlStr.append(" PASSWORD=?,modifydate=? where id=?") ;
-		params.add(user.getPassword()) ;
-		params.add(CommUtil.getNowDate()) ;
-		params.add(user.getId()) ;
-		
-		int result = update(sqlStr.toString(), params.toArray()) ;
-
-		buf.append("|").append(sqlStr)
-		.append("|").append(result)
-		.append("|").append(System.currentTimeMillis()-start) ;
-		Logs.info(buf.toString()) ;
-		return result ;
-	}
 	
 }

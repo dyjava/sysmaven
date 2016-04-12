@@ -1,7 +1,9 @@
 package com.sys.dao.account;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.sys.dao.BaseDao;
 import com.sys.dao.mybatis.MyBatisRepository;
 import com.sys.domain.account.Account;
 import com.sys.domain.account.AccountTable;
@@ -9,17 +11,9 @@ import com.sys.domain.account.AccountTable;
 /** 
  * by dyong 2010-6-16
  */
-//@MyBatisRepository
-public interface AccountDao {
+@MyBatisRepository
+public interface AccountDao extends BaseDao<Account, Serializable>{
 
-	public int insertAccount(Account account) ;	//insert
-	
-	public int updateAccount(Account account) ;	//update
-	
-//	public void deleteAccount(Account account) ;	//delete
-	
-	public Account findAccountById(int id) ;	//find one object by id
-	
 	public List<Account> findAccountList(String begin,String end,Account account) ; 	//find object list by parames
 	
 	/**

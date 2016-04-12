@@ -25,7 +25,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Account findAccountById(int id) {
 		// TODO Auto-generated method stub
-		Account acc = accountDao.findAccountById(id);
+		Account acc = accountDao.selectById(id);
 		acc.setMoney(this.round(acc.getMoney(), 2, 1)) ;
 		return acc ;
 	}
@@ -42,12 +42,12 @@ public class AccountServiceImpl implements AccountService {
 		account.setUid(UUID.randomUUID().toString()) ;
 //		account.setUserId(user.getUid()) ;
 //		account.setUsername(user.getUsername()) ;
-		return accountDao.insertAccount(account);
+		return accountDao.insert(account);
 	}
 
 	@Override
 	public int updateAccount(Account account) {
-		return accountDao.updateAccount(account);
+		return accountDao.updateById(account);
 	}
 
 	@Override

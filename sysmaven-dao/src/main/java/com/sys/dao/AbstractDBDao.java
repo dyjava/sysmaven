@@ -92,7 +92,7 @@ public abstract class AbstractDBDao {
 	 * @param id
 	 * @return
 	 */
-	public <T> T findByID(String table,int id,Class<?> T) {
+	public <T> T findByID(String table,Object id,Class<?> T) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("selectByID") ;

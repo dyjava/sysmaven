@@ -19,7 +19,7 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 	private String table = "income" ;
 	
 	@Override
-	public int insertIncome(Income in) {
+	public int insert(Income in) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("insertIncome") ;
@@ -39,7 +39,7 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 	}
 
 	@Override
-	public int updateIncome(Income income) {
+	public int updateById(Income income) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("updateIncome") ;
@@ -63,7 +63,7 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 	}
 
 	@Override
-	public Income findIncomeById(int id) {
+	public Income selectById(Object id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("insertIncome") ;
@@ -121,6 +121,19 @@ public class IncomeDaoImpl extends AbstractDBDao implements IncomeDao {
 		Logs.info(buf) ;
 		return list ;
 	
+	}
+
+
+	@Override
+	public List<Income> select(Income record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteById(Object id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

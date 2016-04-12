@@ -64,7 +64,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 	}
 
 	@Override
-	public int insertAccount(Account acc) {
+	public int insert(Account acc) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("insertAccount") ;
@@ -94,7 +94,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 	}
 
 	@Override
-	public int updateAccount(Account acc) {
+	public int updateById(Account acc) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("updateAccount") ;
@@ -142,7 +142,7 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 	}
 
 	@Override
-	public Account findAccountById(int id) {
+	public Account selectById(Object id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("findAccountById") ;
@@ -213,6 +213,18 @@ public class AccountDaoImpl extends AbstractDBDao implements AccountDao {
 		buf.append("|").append(System.currentTimeMillis() - start) ;
 		Logs.info(buf) ;
 		return list ;
+	}
+
+	@Override
+	public List<Account> select(Account record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteById(Object id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

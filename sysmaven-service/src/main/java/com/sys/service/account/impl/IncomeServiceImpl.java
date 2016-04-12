@@ -22,7 +22,7 @@ public class IncomeServiceImpl implements IncomeService {
 	@Override
 	public Income findIncomeById(int id) {
 		// TODO Auto-generated method stub
-		return incomeDao.findIncomeById(id);
+		return incomeDao.selectById(id);
 	}
 
 	@Override
@@ -35,12 +35,12 @@ public class IncomeServiceImpl implements IncomeService {
 	public int insertIncome(Income income) {
 		// TODO Auto-generated method stub
 		income.setUid(UUID.randomUUID().toString()) ;
-		return incomeDao.insertIncome(income);
+		return incomeDao.insert(income);
 	}
 
 	@Override
 	public int updateIncome(Income income) {
-		return incomeDao.updateIncome(income);
+		return incomeDao.updateById(income);
 	}
 
 }

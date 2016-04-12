@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
-		return userDao.selectUsersByUser(new User()) ;
+		return userDao.select(new User()) ;
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(int id) {
 		// TODO Auto-generated method stub
-		return userDao.selectUserByID(id) ;
+		return userDao.selectById(id) ;
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean userDelete(int id) {
 		// TODO Auto-generated method stub
-		return userDao.deleteUserByID(id)==0 ;
+		return userDao.deleteById(id)==0 ;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 		if(user.getUsername()==null || user.getUsername().trim().length()==0){
 			user.setUsername(user.getEmail().substring(0,user.getEmail().indexOf("@"))) ;
 		}
-		return userDao.insertUser(user) ;
+		return userDao.insert(user) ;
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int userUpdate(User user) {
 		// TODO Auto-generated method stub
-		return userDao.updateUser(user) ;
+		return userDao.updateById(user) ;
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByUser(User user) {
 		// TODO Auto-generated method stub
-		return userDao.selectUsersByUser(user);
+		return userDao.select(user);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 	public int userPasswordUpdate(User user) {
 		// TODO Auto-generated method stub
 		user.setPassword(user.getPassword()) ;
-		return userDao.updateUserPwd(user) ;
+		return userDao.updateById(user) ;
 	}
 	/**
 	 * 用户登录

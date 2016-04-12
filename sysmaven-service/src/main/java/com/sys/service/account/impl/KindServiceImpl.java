@@ -22,31 +22,37 @@ public class KindServiceImpl implements KindService {
 	@Override
 	public int insertKind(Kind kind) {
 		kind.setUid(UUID.randomUUID().toString()) ;
-		return kindDao.insertKind(kind);
+		return kindDao.insert(kind);
 	}
 	@Override
 	public int updateKind(Kind kind) {
-		return kindDao.updateKind(kind);
+		return kindDao.updateById(kind);
 	}
 	@Override
 	public Kind findKindById(int id) {
-		return kindDao.findKindById(id);
+		return kindDao.selectById(id);
 	}
 	@Override
 	public List<Kind> findKindList(int parentId) {
-		return kindDao.findKindListByParentId(parentId);
+		Kind kind = new Kind() ;
+		kind.setParentId(parentId+"") ;
+		return kindDao.select(kind) ;
 	}
 	@Override
 	public List<Kind> findOutKindList() {
-		return kindDao.findKindListByParentId(-1);
+		Kind kind = new Kind() ;
+		kind.setParentId("-1") ;
+		return kindDao.select(kind) ;
 	}
 	@Override
 	public List<Kind> findIncomeKindList() {
-		return kindDao.findKindListByParentId(1);
+		Kind kind = new Kind() ;
+		kind.setParentId("1") ;
+		return kindDao.select(kind) ;
 	}
 	@Override
 	public List<Kind> findAllKindList() {
-		return kindDao.findAllKindList() ;
+		return kindDao.select(new Kind()) ;
 	}
 
 }

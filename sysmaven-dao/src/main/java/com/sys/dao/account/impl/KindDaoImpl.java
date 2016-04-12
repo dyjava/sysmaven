@@ -17,25 +17,9 @@ import com.sys.domain.account.Kind;
 public class KindDaoImpl extends AbstractDBDao implements KindDao {
 	private String table = "kind" ;
 	
-	@Override
-	public List<Kind> findAllKindList() {
-		long start = System.currentTimeMillis() ;
-		StringBuffer buf = new StringBuffer() ;
-		buf.append(this.getClass().getName()).append("|").append("findAllKindList") ;
-		
-		List<Kind> list = super.findAllList(table, Kind.class) ;
-
-		buf.append("|").append("")
-		.append("|").append("")
-		.append("|").append(list.size())
-		.append("|").append(System.currentTimeMillis() - start) ;
-		Logs.info(buf) ;
-		
-		return list;
-	}
 
 	@Override
-	public int insertKind(Kind kind) {
+	public int insert(Kind kind) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("insertKind") ;
@@ -59,7 +43,7 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 	}
 
 	@Override
-	public int updateKind(Kind kind) {
+	public int updateById(Kind kind) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("updateKind") ;
@@ -94,7 +78,7 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 	}
 
 	@Override
-	public Kind findKindById(int id) {
+	public Kind selectById(Object id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("findKindById") ;
@@ -111,17 +95,28 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 	}
 
 	@Override
-	public List<Kind> findKindListByParentId(int parentId) {
+	public List<Kind> select(Kind record) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
-		buf.append(this.getClass().getName()).append("|").append("findKindListByParentId") ;
+		buf.append(this.getClass().getName()).append("|").append("select") ;
 		
-		String sql = "select * from kind where parentId = ? ";
+		StringBuffer sql = new StringBuffer("select * from kind where 1=1 ") ;
+		ArrayList<Object> params = new ArrayList<Object>() ;
 		
-		List<Kind> list = this.selectList(sql, new Object[] {parentId}, Kind.class) ;
+		if(record.getParentId()!=null && record.getParentId().trim().length()>0){
+			sql.append(" and parentId=?") ;
+			params.add(record.getParentId()) ;
+		}
+		if(record.getUid()!=null && record.getUid().trim().length()>0){
+			sql.append(" and uid=?") ;
+			params.add(record.getUid()) ;
+		}
+		
+		sql.append(" order by id desc") ;
+		List<Kind> list = this.selectList(sql.toString(), params.toArray(), Kind.class) ;
 		
 		buf.append("|").append(sql)
-		.append("|").append(parentId)
+		.append("|").append(this.list2String(params))
 		.append("|").append(list.size())
 		.append("|").append(System.currentTimeMillis() - start) ;
 		Logs.info(buf) ;
@@ -131,6 +126,12 @@ public class KindDaoImpl extends AbstractDBDao implements KindDao {
 		} else {
 			return list ;
 		}
+	}
+
+	@Override
+	public int deleteById(Object id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

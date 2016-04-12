@@ -53,7 +53,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 	}
 
 	@Override
-	public int insertDiary(Diary diary) {
+	public int insert(Diary diary) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("insertDiary") ;
@@ -80,7 +80,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 	}
 
 	@Override
-	public int updateDiary(Diary diary) {
+	public int updateById(Diary diary) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("updateDiary") ;
@@ -112,7 +112,7 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 	}
 
 	@Override
-	public Diary findDiaryById(int id) {
+	public Diary selectById(Object id) {
 		long start = System.currentTimeMillis() ;
 		StringBuffer buf = new StringBuffer() ;
 		buf.append(this.getClass().getName()).append("|").append("findDiaryById") ;
@@ -130,6 +130,19 @@ public class DiaryDaoImpl extends AbstractDBDao implements DiaryDao {
 		} else {
 			return list.get(0) ;
 		}
+	}
+
+
+	@Override
+	public List<Diary> select(Diary record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteById(Object id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

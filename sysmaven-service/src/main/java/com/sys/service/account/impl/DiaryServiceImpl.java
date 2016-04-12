@@ -21,7 +21,7 @@ public class DiaryServiceImpl implements DiaryService {
 		
 	@Override
 	public Diary findDiaryById(int id) {
-		return diaryDao.findDiaryById(id);
+		return diaryDao.selectById(id);
 	}
 
 	@Override
@@ -41,14 +41,14 @@ public class DiaryServiceImpl implements DiaryService {
 		diary.setUid(UUID.randomUUID().toString()) ;
 		diary.setUserId(user.getUid()) ;
 		diary.setUsername(user.getUsername()) ;
-		return diaryDao.insertDiary(diary);
+		return diaryDao.insert(diary);
 	}
 
 	@Override
 	public int updateDiary(Diary diary,User user) {
 		diary.setUserId(user.getUid()) ;
 		diary.setUsername(user.getUsername()) ;
-		return diaryDao.updateDiary(diary);
+		return diaryDao.updateById(diary);
 	}
 
 }
