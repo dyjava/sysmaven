@@ -10,13 +10,13 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 /** 
-* @author whp 
-* @Email whp@ehoo.cn 
-* @Jan 4, 2011 
-*  
-*/  
+ * 切面日志记录
+ * @author diyong
+ *
+ */
 @Aspect		//声明切面  
 public class MyInterceptor {
+	
 	@Pointcut("execution(* cn.ehoo.service.impl.PersonServiceBean.*(..))")// 切入点表达式  
 	private void anyMethod() {
 		
