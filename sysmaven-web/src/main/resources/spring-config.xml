@@ -22,7 +22,7 @@
     <aop:aspectj-autoproxy/>
 
     <!-- 属性文件读入 -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean id="propertyReader" class="com.sys.common.PropertyReader">
         <property name="locations">
             <list>
                 <value>classpath:props/*.properties</value>
